@@ -68,6 +68,7 @@ public class TeacherAction extends Action{
 	public ActionForward toExcelImport(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
+		System.out.println("-------------");
 		return mapping.findForward("import");
 	}
 	
