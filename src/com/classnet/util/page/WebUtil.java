@@ -131,4 +131,20 @@ public class WebUtil {
 		}
 		return false;
 	}
+	
+	
+	public static boolean isTeacher(){
+		UserDetails ud=getLogin();
+		if(ud!=null){
+			boolean is=false;
+			for(GrantedAuthority ga:ud.getAuthorities()){
+				if(ga.getAuthority().equals("ROLE_TEACHER")){
+					is=true;
+					break;
+				}
+			}
+			return is;
+		}
+		return false;
+	}
 }

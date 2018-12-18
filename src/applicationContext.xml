@@ -42,6 +42,7 @@
 				<!-- 自定义实体类 -->
 				<value>com.hyitclassnet.entities.Category</value>
 				<value>com.hyitclassnet.entities.Grade</value>
+				<value>com.hyitclassnet.entities.StudentInfoEntities</value>
 			</list>
 		</property>
 	</bean>

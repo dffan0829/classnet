@@ -1,8 +1,9 @@
-package com.classnet.dao.impl;
+package com.hyitclassnet.dao.impl;
 
 import java.util.List;
 
-import com.classnet.dao.StudentDao;
+import com.classnet.dao.impl.HibernateSupportDao;
+import com.hyitclassnet.dao.StudentDao;
 import com.hyitclassnet.entities.StudentInfoEntities;
 
 public class StudentDaoImpl extends HibernateSupportDao<StudentInfoEntities> implements StudentDao{

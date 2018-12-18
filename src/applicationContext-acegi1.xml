@@ -138,6 +138,7 @@
 				PATTERN_TYPE_APACHE_ANT 
 				/admin/**=ROLE_SUPERVISOR	
 				/master/**=ROLE_USER
+				/teacher/**=ROLE_TEACHER
 				]]>
 			</value>
 		</property>

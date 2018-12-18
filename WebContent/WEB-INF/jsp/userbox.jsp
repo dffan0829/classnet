@@ -21,10 +21,14 @@
 				<a href="<c:url value="/admin"/>">进入后台管理</a>
 				<%
 					}
-					else{
+					else if(WebUtil.isTeacher()){
 				%>
-				<a href="<c:url value="/master/"/>">进入用户中心</a>
+				<a href="<c:url value="/teacher/"/>">进入教师中心</a>
 				<%		
+					}else{
+				%>	
+				 <a href="<c:url value="/master/"/>">进入用户中心</a>
+				<%
 					}
 				%>
 				&nbsp;&nbsp;|&nbsp;&nbsp;

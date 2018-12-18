@@ -203,4 +203,12 @@
 		<property name="gradeDao" ref="gradeDao"></property>
 		<property name="userDao" ref="userDao"></property>
 	</bean>
+	
+	<!-- 教师中心 -->
+	<bean name="/teacher/index" class="com.hyitclassnet.action.teacher.IndexAction">
+		<property name="userDao" ref="userDao"></property>
+	</bean>
+	<bean name="/teacher/teacherOperate" class="com.hyitclassnet.action.teacher.TeacherAction">
+		<property name="studentDao" ref="studentDao"></property>
+	</bean>
 </beans>

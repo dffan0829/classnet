@@ -49,6 +49,10 @@
       <param-value>/WEB-INF/master/struts-config.xml</param-value>
     </init-param>
     <init-param>
+      <param-name>config/teacher</param-name>
+      <param-value>/WEB-INF/teacher/struts-config.xml</param-value>
+    </init-param>
+    <init-param>
       <param-name>debug</param-name>
       <param-value>3</param-value>
     </init-param>

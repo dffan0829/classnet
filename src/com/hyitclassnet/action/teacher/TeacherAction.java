@@ -1,4 +1,4 @@
-package com.hyitclassnet.action;
+package com.hyitclassnet.action.teacher;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,19 +12,19 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.actions.DispatchAction;
 import org.apache.struts.upload.FormFile;
 import org.springframework.beans.BeanUtils;
 
-import com.classnet.dao.StudentDao;
 import com.classnet.entity.NewsEntity;
 import com.classnet.form.NewsForm;
+import com.hyitclassnet.dao.StudentDao;
 import com.hyitclassnet.entities.StudentInfoEntities;
 
-public class StuInfoFileUploadAction extends DispatchAction {
+public class TeacherAction extends Action{
 
 	/**
 	 * 
@@ -65,6 +65,12 @@ public class StuInfoFileUploadAction extends DispatchAction {
 		this.studentDao = studentDao;
 	}
 
+	public ActionForward toExcelImport(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		return mapping.findForward("import");
+	}
+	
 	public ActionForward doExcelImport(ActionMapping mapping, ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 
@@ -113,5 +119,4 @@ public class StuInfoFileUploadAction extends DispatchAction {
 		}
 		return mapping.findForward("stulst");
 	}
-
 }
