@@ -67,15 +67,12 @@ function check(form){
 	  <tr>
 	  	<td width="15%" height="28" align="right" bgcolor="#edf1f7">选择教师：</td>
 		<td height="28" bgcolor="#FFFFFF">
-			<select>
+			<select name="teacherid">
 			  <c:forEach items="${teacherlst}" var="teacher" varStatus="vs">
-			   <c:if test="${vs.index == 0 }">
-			  	 <option value="${teacher.id}" selected="selected">${teacher.username }</option>
-			   </c:if>
-			   	 <option value="${teacher.id}">${teacher.username }</option>
+			   	 <option value="${teacher[0]}">${teacher[1] }</option>
 			  </c:forEach>
 			</select>
-			<p>请输入班级人数</p>
+			<p>请选择教师</p>
 		</td>
 	  </tr>
 	</table>

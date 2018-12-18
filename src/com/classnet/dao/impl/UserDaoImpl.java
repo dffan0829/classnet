@@ -22,9 +22,9 @@ public class UserDaoImpl extends HibernateSupportDao<UserEntity> implements User
 	@SuppressWarnings("unchecked")
 	public List<UserEntity> getTeacher(){
 		try{
-			String sql = "from UserEntity authorite = :authorite";
-			Query q = getSessionFactory().getCurrentSession().createQuery(sql);
-			q.setParameter("authorite", "ROLE_TEACHER");
+			String sql = "select * from user_table where authorite = 'ROLE_TEACHER'";
+			Query q = getSessionFactory().getCurrentSession().createSQLQuery(sql);
+			System.out.println(q.list());
 			return q.list();
 		}catch(RuntimeException e){
 			throw e;

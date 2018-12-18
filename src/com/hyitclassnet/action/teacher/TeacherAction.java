@@ -16,6 +16,7 @@ import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+import org.apache.struts.actions.DispatchAction;
 import org.apache.struts.upload.FormFile;
 import org.springframework.beans.BeanUtils;
 
@@ -24,17 +25,16 @@ import com.classnet.form.NewsForm;
 import com.hyitclassnet.dao.StudentDao;
 import com.hyitclassnet.entities.StudentInfoEntities;
 
-public class TeacherAction extends Action{
+public class TeacherAction extends DispatchAction {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
 
 	private String path;
 	private String type;
-	private Integer filesize=1024*1024;
+	private Integer filesize = 1024 * 1024;
 	private StudentDao studentDao;
 
 	public String getPath() {
@@ -65,18 +65,17 @@ public class TeacherAction extends Action{
 		this.studentDao = studentDao;
 	}
 
-	public ActionForward toExcelImport(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
+	public ActionForward toExcelImport(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
 		System.out.println("-------------");
 		return mapping.findForward("import");
 	}
-	
+
 	public ActionForward doExcelImport(ActionMapping mapping, ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-
+		System.out.println("----excel import");
 		try {
-			NewsForm newsForm = (NewsForm)form;
+			NewsForm newsForm = (NewsForm) form;
 			NewsEntity entity = new NewsEntity();
 			BeanUtils.copyProperties(newsForm, entity);
 			FormFile file = newsForm.getImgFile();

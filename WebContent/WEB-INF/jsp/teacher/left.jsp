@@ -14,7 +14,7 @@
 				align="absmiddle"
 				src="<f:message key="image_http_url"/>/images/article_add.gif"
 				style="border: 0" />&nbsp;&nbsp;批改作业</a></li>
-		<li><a href="<c:url value="/master/topic.do?m=list" />"><img
+		<li><a href="<c:url value="/teacher/homework.do?m=titleList" />"><img
 				align="absmiddle"
 				src="<f:message key="image_http_url"/>/images/article_add.gif"
 				style="border: 0" />&nbsp;&nbsp;布置作业</a></li>

@@ -14,6 +14,7 @@ public class Grade {
 	private Integer classId;
 	private String className;
 	private Integer classNum;
+	private Integer teacherId;
 
 	@Id
 	public String getRowGuid() {
@@ -22,6 +23,15 @@ public class Grade {
 
 	public void setRowGuid(String rowGuid) {
 		this.rowGuid = rowGuid;
+	}
+	
+	@Column(name = "teacherid", nullable = false)
+	public Integer getTeacherId() {
+		return teacherId;
+	}
+
+	public void setTeacherId(Integer teacherId) {
+		this.teacherId = teacherId;
 	}
 
 	@Column(name = "classid", nullable = false)

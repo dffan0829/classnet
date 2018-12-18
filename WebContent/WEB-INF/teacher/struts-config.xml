@@ -2,40 +2,35 @@
 <!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN" "http://struts.apache.org/dtds/struts-config_1_2.dtd">
 
 <struts-config>
-  <data-sources />
-  <form-beans>
-  	<form-bean name="userHomeWorkForm" type="com.classnet.form.UserHomeWorkForm"></form-bean>
-  </form-beans>
-  <global-exceptions />
-  <global-forwards />
-  <action-mappings>
-  	<action path="/index"
-  			scope="request"
-  			type="org.springframework.web.struts.DelegatingActionProxy">
-  		<forward name="succ" path="/../WEB-INF/jsp/teacher/index.jsp"></forward>
-  	</action>
-  	<action path="/homework"
-  			scope="request"
-  			name="userHomeWorkForm"
-  			parameter="m"
-  			type="org.springframework.web.struts.DelegatingActionProxy">
-  		<forward name="hw" path="/../WEB-INF/jsp/teacher/homework.jsp"></forward>
-  		<forward name="homeworktitledetial" path="/../WEB-INF/jsp/teacher/homeworktitledetial.jsp"></forward>
-  	</action>
-  	<action path="/topic"
-  			scope="request"
-  			parameter="m"
-  			type="org.springframework.web.struts.DelegatingActionProxy">
-  		<forward name="list" path="/../WEB-INF/jsp/teacher/topiclist.jsp"></forward>
-  		<forward name="addtopic" path="/../WEB-INF/jsp/teacher/addtopic.jsp"></forward>
-  	</action>
-  	
-  	<action path="/teacherOperate"
-  			scope="request"
-  			parameter="m"
-  			type="org.springframework.web.struts.DelegatingActionProxy">
-  		<forward name="import" path="/../WEB-INF/jsp/teacher/importstu.jsp"></forward>
-  	</action>
-  </action-mappings>
+	<data-sources />
+	<form-beans>
+		<form-bean name="userHomeWorkForm" type="com.classnet.form.UserHomeWorkForm"></form-bean>
+		<form-bean name="newsForm" type="com.classnet.form.NewsForm"></form-bean>
+	</form-beans>
+	<global-exceptions />
+	<global-forwards />
+	<action-mappings>
+		<action path="/index" scope="request"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="succ" path="/../WEB-INF/jsp/teacher/index.jsp"></forward>
+		</action>
+		<action path="/homework" scope="request" parameter="m"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="titleList" path="/../WEB-INF/jsp/admin/homeworktitle.jsp"></forward>
+			<forward name="addTitle" path="/../WEB-INF/jsp/admin/addhomeworktitle.jsp"></forward>
+			<forward name="homeworktitledetail" path="/../WEB-INF/jsp/admin/homeworktitledetail.jsp"></forward>
+			<forward name="homeworklist" path="/../WEB-INF/jsp/admin/homeworklist.jsp"></forward>
+		</action>
+		<action path="/topic" scope="request" parameter="m"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="list" path="/../WEB-INF/jsp/teacher/topiclist.jsp"></forward>
+			<forward name="addtopic" path="/../WEB-INF/jsp/teacher/addtopic.jsp"></forward>
+		</action>
+
+		<action path="/teacherOperate" scope="request" parameter="m"
+			name="newsForm" type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="import" path="/../WEB-INF/jsp/teacher/importstu.jsp"></forward>
+		</action>
+	</action-mappings>
 </struts-config>
 

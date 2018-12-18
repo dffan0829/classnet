@@ -50,56 +50,55 @@ public class GradeAction extends DispatchAction {
 		request.setAttribute("teacherlst", userDao.getTeacher());
 		return mapping.findForward("addGrade");
 	}
-	
-	public ActionForward toUpdate(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
+
+	public ActionForward toUpdate(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
 		String rowguid = request.getParameter("id");
 		Grade entity = gradeDao.selectById(Grade.class, rowguid);
 		request.setAttribute("grade", entity);
 		return mapping.findForward("addGrade");
 
 	}
-	
-	
-	public ActionForward delGrade(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
-		
+
+	public ActionForward delGrade(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+
 		String rowguid = request.getParameter("id");
 		Grade entity = gradeDao.selectById(Grade.class, rowguid);
 		gradeDao.delete_(entity);
-		response.sendRedirect(request.getContextPath()+"/admin/grade.do?m=list");
+		response.sendRedirect(request.getContextPath() + "/admin/grade.do?m=list");
 		return null;
 	}
-	
-	public ActionForward doAddGrade(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
+
+	public ActionForward doAddGrade(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
 		String rowguid = request.getParameter("rowguid");
 		String classid = request.getParameter("classid");
 		String classname = request.getParameter("classname");
 		String classnum = request.getParameter("classnum");
-		if(!"".equals(rowguid)){
+		String teacherid = request.getParameter("teacherid");
+		if (!"".equals(rowguid)) {
 			Grade entity = gradeDao.selectById(Grade.class, rowguid);
-			if(entity!=null){
+			if (entity != null) {
 				entity.setClassId(Integer.parseInt(classid));
 				entity.setClassName(classname);
 				entity.setClassNum(Integer.parseInt(classnum));
+				entity.setTeacherId(Integer.parseInt(teacherid));
 			}
 			gradeDao.update_(entity);
-		}else{
+		} else {
 			Grade entity = new Grade();
 			entity.setRowGuid(UUID.randomUUID().toString());
 			entity.setClassId(Integer.parseInt(classid));
 			entity.setClassName(classname);
 			entity.setClassNum(Integer.parseInt(classnum));
+			entity.setTeacherId(Integer.parseInt(teacherid));
 			gradeDao.save_(entity);
 		}
-		response.sendRedirect(request.getContextPath()+"/admin/grade.do?m=list");
+		response.sendRedirect(request.getContextPath() + "/admin/grade.do?m=list");
 		return null;
 	}
-	
+
 	public ActionForward changestatus(ActionMapping mapping, ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 

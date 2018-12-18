@@ -211,4 +211,9 @@
 	<bean name="/teacher/teacherOperate" class="com.hyitclassnet.action.teacher.TeacherAction">
 		<property name="studentDao" ref="studentDao"></property>
 	</bean>
+	<bean name="/teacher/homework" class="com.classnet.action.admin.HomeWorkAction">
+		<property name="homeWorkTitleDao" ref="homeWorkTitleDao"></property>
+		<property name="userHomeWorkDao" ref="userHomeWorkDao"></property>
+		<property name="path" value="${upload_path}"></property>
+	</bean>
 </beans>
