@@ -12,6 +12,7 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
@@ -79,7 +80,7 @@ public class TeacherAction extends DispatchAction {
 			NewsEntity entity = new NewsEntity();
 			BeanUtils.copyProperties(newsForm, entity);
 			FormFile file = newsForm.getImgFile();
-			Workbook wb = new HSSFWorkbook(file.getInputStream());
+			XSSFWorkbook wb = new XSSFWorkbook(file.getInputStream());
 			Sheet sheet = wb.getSheetAt(0);
 			int rowNum = sheet.getLastRowNum() + 1;
 			List<StudentInfoEntities> list = new ArrayList<StudentInfoEntities>();

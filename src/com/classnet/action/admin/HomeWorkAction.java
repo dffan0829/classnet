@@ -203,6 +203,8 @@ public class HomeWorkAction extends DispatchAction{
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		
+		System.out.println("delete---------------");
+		
 		int titleId = WebUtil.getInteger(request, "titleId");
 		int id = WebUtil.getInteger(request, "id");
 		String ids = request.getParameter("ids");
@@ -234,7 +236,7 @@ public class HomeWorkAction extends DispatchAction{
 				}
 			}
 		}
-		response.sendRedirect(request.getContextPath()+"/teacher/homework.do?m=list&titleId="+titleId);
+		response.sendRedirect(request.getContextPath()+"/teacher/homework.do?m=titleList");
 		return null;
 	}
 	public void setPath(String path) {

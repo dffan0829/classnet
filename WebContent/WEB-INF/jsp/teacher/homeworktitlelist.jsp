@@ -8,48 +8,48 @@
 	rel="stylesheet" type="text/css" />
 <link href="<%=request.getContextPath()%>/css/user.css" rel="stylesheet"
 	type="text/css" />
-<title>作业列表</title>
+<title>题目列表</title>
 <script type="text/javascript">
-	function selectAll(obj) {
+function selectAll(obj){
+	var array = document.getElementsByName("hwId");
+	if(array){
+		for(var i=0;i<array.length;i++){
+			if(obj.checked){
+				array[i].checked=true;
+			}
+			else{
+				array[i].checked=false;
+			}
+		}
+	}
+}
+function check(form){
+	if(form.key.value==""){
+		alert("不能为空");
+		return false;
+	}
+	return true;
+}
+function del(id){
+	if(id!=0){
+		location='<c:url value="/teacher/homework.do?m=del&id="/>'+id+"&titleId=<c:out value="${titleEntity.id}"/>";
+	}
+	else{
 		var array = document.getElementsByName("hwId");
-		if (array) {
-			for (var i = 0; i < array.length; i++) {
-				if (obj.checked) {
-					array[i].checked = true;
-				} else {
-					array[i].checked = false;
-				}
+		var idstr="";
+		for(var i=0;i<array.length;i++){
+			if(array[i].checked){
+				idstr+=array[i].value+",";
 			}
 		}
-	}
-	function check(form) {
-		if (form.key.value == "") {
-			alert("不能为空");
-			return false;
+		if(idstr){
+			location='<c:url value="/teacher/homework.do?m=del&ids="/>'+idstr+"&titleId=<c:out value="${titleEntity.id}"/>";;
 		}
-		return true;
-	}
-	function del(id) {
-		if (id != 0) {
-			location = '<c:url value="/teacher/homework.do?m=del&id="/>' + id
-					+ "&titleId=<c:out value="${titleEntity.id}"/>";
-		} else {
-			var array = document.getElementsByName("hwId");
-			var idstr = "";
-			for (var i = 0; i < array.length; i++) {
-				if (array[i].checked) {
-					idstr += array[i].value + ",";
-				}
-			}
-			if (idstr) {
-				location = '<c:url value="/teacher/homework.do?m=del&ids="/>'
-						+ idstr + "&titleId=<c:out value="${titleEntity.id}"/>";
-				;
-			} else {
-				alert("您还未选择");
-			}
+		else{
+			alert("您还未选择");
 		}
 	}
+}
 </script>
 </head>
 <body>
@@ -72,28 +72,18 @@
 						<div class="u_form1">
 							<div style="text-align: center">
 								<div class="middle">
-									<table width="99%" border="0" cellpadding="0" cellspacing="1"
-										bgcolor="#dae2e5">
-										<tr>
-											<td height="30" bgcolor="#ffffff" align="left"
-												style="padding-left: 10px; font-weight: bold;">作业题目：<c:out
-													value="${titleEntity.title}" />
-											</td>
-										</tr>
-									</table>
-								</div>
-								<div class="middle">
-									<form action="<c:url value="/admin/homework.do"/>" method="get"
+									<form action="<c:url value="/teacher/homework.do"/>" method="get"
 										style="margin: 0px;" onsubmit="return check(this)">
 										<table width="99%" border="0" cellpadding="0" cellspacing="1"
 											bgcolor="#dae2e5">
 											<tr>
 												<td height="30" bgcolor="#ffffff" align="center"><input
-													type="hidden" name="m" value="list" /> 关键字:<input
-													type="text" name="key" value="${key}" /> 用户名:<input
-													type="text" name="username" value="${username}" /> <input
-													type="hidden" name="titleId" value="${titleEntity.id}" />
-													<input type="submit" value="搜索" /></td>
+													type="hidden" name="m" value="titleList" /> 题目关键字:<input
+													type="text" name="key" value="${key}" /> <input
+													type="submit" value="搜索" /> <input type="button"
+													value="添加题目"
+													onclick="location='<c:url value="/teacher/homework.do?m=addTitle"/>'" />
+												</td>
 											</tr>
 										</table>
 									</form>
@@ -104,39 +94,39 @@
 										<tr>
 											<td width="10%" height="30" bgcolor="#e5edfa"><div
 													align="center" class="STYLE3">ID</div></td>
-											<td width="20%" height="30" bgcolor="#e5edfa"><div
-													align="center" class="STYLE3">用户名</div></td>
 											<td width="30%" height="30" bgcolor="#e5edfa"><div
-													align="center" class="STYLE3">标题</div></td>
+													align="center" class="STYLE3">题目名称</div></td>
 											<td width="20%" height="30" bgcolor="#e5edfa"><div
-													align="center" class="STYLE3">提交时间</div></td>
+													align="center" class="STYLE3">日期</div></td>
 											<td width="20%" height="30" bgcolor="#e5edfa"><div
 													align="center" class="STYLE3">操作选项</div></td>
 										</tr>
 										<c:choose>
-											<c:when test="${not empty homeworkList}">
-												<c:forEach items="${homeworkList}" var="hw" varStatus="vs">
+											<c:when test="${not empty homeworktitleList}">
+												<c:forEach items="${homeworktitleList}" var="hw"
+													varStatus="vs">
 													<tr>
 														<td height="30" bgcolor="#FFFFFF" align="center"><input
 															type="checkbox" name="hwId" value="${hw.id}" />&nbsp;<c:out
 																value="${vs.index+1}" /></td>
-														<td bgcolor="#FFFFFF" align="center"><c:out
-																value="${hw.userEntity.username}" /></td>
-														<td bgcolor="#FFFFFF" align="center"><c:out
-																value="${hw.name}" /></td>
-														<td bgcolor="#FFFFFF" align="center"><f:formatDate
-																value="${hw.addtime}" pattern="yyyy-MM-dd HH:mm" /></td>
 														<td bgcolor="#FFFFFF" align="center"><a
-															href="javascript:del(${hw.id})">删除</a>&nbsp;&nbsp; <a
-															target="_blank"
-															href="<c:url value="/teacher/homework.do?m=download&id=${hw.id}"/>">下载</a>
+															href="<c:url value="/teacher/homework.do?m=list&titleId=${hw.id}"/>"><c:out
+																	value="${hw.title}" /></a></td>
+														<td bgcolor="#FFFFFF" align="center"><f:formatDate
+																value="${hw.time}" pattern="yyyy-MM-dd HH:mm" /></td>
+														<td bgcolor="#FFFFFF" align="center"><a
+															href="<c:url value="/teacher/homework.do?m=editTitle&id=${hw.id}"/>">修改</a>&nbsp;&nbsp;
+															<a href="javascript:del(${hw.id})">删除</a>&nbsp;&nbsp; <a
+															href="<c:url value="/teacher/homework.do?m=titleDetail&id=${hw.id}"/>">详细</a>&nbsp;&nbsp;
+															<a
+															href="<c:url value="/teacher/homework.do?m=list&titleId=${hw.id}"/>">查看作业</a>
 														</td>
 													</tr>
 												</c:forEach>
 											</c:when>
 											<c:otherwise>
 												<tr>
-													<td colspan="5" align="center" height="30"
+													<td colspan="4" align="center" height="30"
 														bgcolor="#ffffff">暂无记录</td>
 												</tr>
 											</c:otherwise>
@@ -145,8 +135,6 @@
 									<p>
 										<input type="checkbox" onclick="selectAll(this)" /> 全选 <input
 											type="button" value="删除" class="shanchu" onclick="del(0)" />
-										<input type="button" value="返回题目列表"
-											onclick="location='<c:url value="/teacher/homework.do?m=titleList"/>';" />
 									</p>
 								</div>
 								<br /> <br />
