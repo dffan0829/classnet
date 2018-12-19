@@ -74,7 +74,7 @@ public class HomeWorkAction extends DispatchAction{
 		entity.setTime(new Date());
 		entity.setDescription(description);
 		homeWorkTitleDao.save_(entity);
-		response.sendRedirect(request.getContextPath()+"/admin/homework.do?m=titleList");
+		response.sendRedirect(request.getContextPath()+"/teacher/homework.do?m=titleList");
 		return null;
 	}
 	public ActionForward editTitle(ActionMapping mapping, ActionForm form,
@@ -83,7 +83,7 @@ public class HomeWorkAction extends DispatchAction{
 		int id = WebUtil.getInteger(request, "id");
 		HomeWorkTitleEntity entity = homeWorkTitleDao.selectById(HomeWorkTitleEntity.class, id);
 		if(entity==null){
-			response.sendRedirect(request.getContextPath()+"/admin/homework.do?m=titleList");
+			response.sendRedirect(request.getContextPath()+"/teacher/homework.do?m=titleList");
 			return null;
 		}
 		request.setAttribute("homeWorkTitleEntity", entity);
@@ -102,7 +102,7 @@ public class HomeWorkAction extends DispatchAction{
 			entity.setDescription(description);
 			homeWorkTitleDao.update_(entity);
 		}
-		response.sendRedirect(request.getContextPath()+"/admin/homework.do?m=titleList");
+		response.sendRedirect(request.getContextPath()+"/teacher/homework.do?m=titleList");
 		return null;
 	}
 	public ActionForward delTitle(ActionMapping mapping, ActionForm form,
@@ -128,7 +128,7 @@ public class HomeWorkAction extends DispatchAction{
 				}
 			}
 		}
-		response.sendRedirect(request.getContextPath()+"/admin/homework.do?m=titleList");
+		response.sendRedirect(request.getContextPath()+"/teacher/homework.do?m=titleList");
 		return null;
 	}
 	public ActionForward titleDetail(ActionMapping mapping, ActionForm form,
@@ -234,7 +234,7 @@ public class HomeWorkAction extends DispatchAction{
 				}
 			}
 		}
-		response.sendRedirect(request.getContextPath()+"/admin/homework.do?m=list&titleId="+titleId);
+		response.sendRedirect(request.getContextPath()+"/teacher/homework.do?m=list&titleId="+titleId);
 		return null;
 	}
 	public void setPath(String path) {

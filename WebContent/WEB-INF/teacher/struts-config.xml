@@ -16,11 +16,11 @@
 		</action>
 		<action path="/homework" scope="request" parameter="m"
 			type="org.springframework.web.struts.DelegatingActionProxy">
-			<forward name="titleList" path="/../WEB-INF/jsp/admin/homeworktitle.jsp"></forward>
-			<forward name="addTitle" path="/../WEB-INF/jsp/admin/addhomeworktitle.jsp"></forward>
-			<forward name="homeworktitledetail" path="/../WEB-INF/jsp/admin/homeworktitledetail.jsp"></forward>
-			<forward name="homeworklist" path="/../WEB-INF/jsp/admin/homeworklist.jsp"></forward>
-		</action>
+			<forward name="titleList" path="/../WEB-INF/jsp/teacher/homeworklist.jsp"></forward>
+			<forward name="addTitle" path="/../WEB-INF/jsp/teacher/addhomeworktitle.jsp"></forward>
+			<forward name="homeworktitledetail" path="/../WEB-INF/jsp/teacher/homeworktitledetail.jsp"></forward>
+<!-- 			<forward name="homeworklist" path="/../WEB-INF/jsp/admin/homeworklist.jsp"></forward>
+ -->		</action>
 		<action path="/topic" scope="request" parameter="m"
 			type="org.springframework.web.struts.DelegatingActionProxy">
 			<forward name="list" path="/../WEB-INF/jsp/teacher/topiclist.jsp"></forward>

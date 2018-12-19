@@ -68,7 +68,7 @@ function del(id){
 				<input type="hidden" name="m" value="titleList"/>
 				题目关键字:<input type="text" name="key" value="${key}"/>
 				<input type="submit" value="搜索"/>
-				<input type="button" value="添加题目" onclick="location='<c:url value="/admin/homework.do?m=addTitle"/>'"/>		
+				<input type="button" value="添加题目" onclick="location='<c:url value="/teacher/homework.do?m=addTitle"/>'"/>		
 				</td>
 			</tr>
 		</table>
@@ -90,16 +90,16 @@ function del(id){
 			      	<input type="checkbox" name="hwId" value="${hw.id}"/>&nbsp;<c:out value="${vs.index+1}" />
 			       </td>
 			      <td bgcolor="#FFFFFF" align="center">
-			      	<a href="<c:url value="/admin/homework.do?m=list&titleId=${hw.id}"/>"><c:out value="${hw.title}" /></a>
+			      	<a href="<c:url value="/teacher/homework.do?m=list&titleId=${hw.id}"/>"><c:out value="${hw.title}" /></a>
 			      </td>
 			      <td bgcolor="#FFFFFF" align="center">
 			      	<f:formatDate value="${hw.time}" pattern="yyyy-MM-dd HH:mm"/>
 			      </td>
 			      <td bgcolor="#FFFFFF" align="center">
-			      	<a href="<c:url value="/admin/homework.do?m=editTitle&id=${hw.id}"/>">修改</a>&nbsp;&nbsp;
+			      	<a href="<c:url value="/teacher/homework.do?m=editTitle&id=${hw.id}"/>">修改</a>&nbsp;&nbsp;
 			      	<a href="javascript:del(${hw.id})">删除</a>&nbsp;&nbsp;
-			      	<a href="<c:url value="/admin/homework.do?m=titleDetail&id=${hw.id}"/>">详细</a>&nbsp;&nbsp;
-			      	<a href="<c:url value="/admin/homework.do?m=list&titleId=${hw.id}"/>">查看作业</a>
+			      	<a href="<c:url value="/teacher/homework.do?m=titleDetail&id=${hw.id}"/>">详细</a>&nbsp;&nbsp;
+			      	<a href="<c:url value="/teacher/homework.do?m=list&titleId=${hw.id}"/>">查看作业</a>
 			     </td>
 			    </tr>
 	    		</c:forEach>
