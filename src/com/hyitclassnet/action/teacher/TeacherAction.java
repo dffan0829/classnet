@@ -11,19 +11,25 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.actions.DispatchAction;
 import org.apache.struts.upload.FormFile;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.BeanUtils;
 
+import com.classnet.dao.UserDao;
 import com.classnet.entity.NewsEntity;
+import com.classnet.entity.UserEntity;
+import com.classnet.entity.UserHomeWorkEntity;
 import com.classnet.form.NewsForm;
+import com.classnet.util.page.WebUtil;
+import com.hyitclassnet.dao.GradeDao;
 import com.hyitclassnet.dao.StudentDao;
+import com.hyitclassnet.entities.Grade;
 import com.hyitclassnet.entities.StudentInfoEntities;
 
 public class TeacherAction extends DispatchAction {
@@ -37,6 +43,15 @@ public class TeacherAction extends DispatchAction {
 	private String type;
 	private Integer filesize = 1024 * 1024;
 	private StudentDao studentDao;
+	private UserDao userDao;
+	private GradeDao gradeDao;
+	
+	public void setGradeDao(GradeDao gradeDao) {
+		this.gradeDao = gradeDao;
+	}
+	public void setUserDao(UserDao userDao) {
+		this.userDao = userDao;
+	}
 
 	public String getPath() {
 		return path;
@@ -65,13 +80,82 @@ public class TeacherAction extends DispatchAction {
 	public void setStudentDao(StudentDao studentDao) {
 		this.studentDao = studentDao;
 	}
+	
+	public ActionForward updatePwd(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		String loginUser = WebUtil.getLoginUser();
+		UserEntity userEntity = userDao.getUser(loginUser);
+		String pwd = request.getParameter("newpwd");
+		if(userEntity!=null){
+			userEntity.setPassword(pwd);
+			userDao.update_(userEntity);
+		}
+		request.getRequestDispatcher("/teacher/").forward(request, response);
+		return null;
+	}
+	
+	public ActionForward toUpdatePwd(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		String loginUser = WebUtil.getLoginUser();
+		UserEntity userEntity = userDao.getUser(loginUser);
+		request.setAttribute("userEntity", userEntity);
+		return mapping.findForward("updatepwd");
+	}
+	
+	public ActionForward updateInfo(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		 
+		int id = WebUtil.getInteger(request, "id");
+		String username = request.getParameter("username");
+		String realName = request.getParameter("realName");
+		String phoneNumber = request.getParameter("phoneNumber");
+		String email = request.getParameter("email");
 
+		UserEntity entity = userDao.selectById(UserEntity.class, id);
+		if(entity!=null){
+			entity.setUsername(username);
+			entity.setRealName(realName);
+			entity.setPhoneNumber(phoneNumber);
+			entity.setEmail(email);
+			userDao.update_(entity);
+		}
+		
+		request.getRequestDispatcher("/teacher/").forward(request, response);
+		return null;
+	}
+	
+	
+	public ActionForward toUpdateInfo(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		String loginUser = WebUtil.getLoginUser();
+		UserEntity userEntity = userDao.getUser(loginUser);
+		request.setAttribute("userEntity", userEntity);
+		//自定义查询
+		DetachedCriteria dc = DetachedCriteria.forClass(Grade.class);
+		dc.add(Restrictions.eq("teacherId", userEntity.getId()));
+		Grade grade =  gradeDao.uniqueResult(dc);
+		request.setAttribute("grade", grade);
+		
+		return mapping.findForward("updateinfo");
+	}
+	
 	public ActionForward toExcelImport(ActionMapping mapping, ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		System.out.println("-------------");
 		return mapping.findForward("import");
 	}
+	
+	public ActionForward del(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		String rowguid = request.getParameter("id");
+		StudentInfoEntities studentInfoEntities = studentDao.selectById(StudentInfoEntities.class, rowguid);
+		studentDao.delete_(studentInfoEntities);
 
+		@SuppressWarnings("unchecked")
+		List<StudentInfoEntities> lst = studentDao.findByExample("from StudentInfoEntities");
+		request.setAttribute("stulst", lst);
+		return mapping.findForward("stulst");
+	}
+	
 	public ActionForward doExcelImport(ActionMapping mapping, ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		System.out.println("----excel import");
@@ -118,6 +202,12 @@ public class TeacherAction extends DispatchAction {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		
+		@SuppressWarnings("unchecked")
+		List<StudentInfoEntities> lst = studentDao.findByExample("from StudentInfoEntities");
+		request.setAttribute("stulst", lst);
+		
 		return mapping.findForward("stulst");
 	}
 }

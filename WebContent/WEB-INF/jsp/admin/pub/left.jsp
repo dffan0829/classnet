@@ -9,12 +9,12 @@ if(url.indexOf("user.do")!=-1){
 else{
 	document.write('<li><a href="<c:url value="/admin/user.do?m=list"/>">用户管理</a></li>');
 }
-if(url.indexOf("homework.do")!=-1){
+/* if(url.indexOf("homework.do")!=-1){
 	document.write('<li class="bj"><a href="<c:url value="/admin/homework.do?m=titleList"/>">作业管理</a></li>');
 }
  else{
 	document.write('<li><a href="<c:url value="/admin/homework.do?m=titleList"/>">作业管理</a></li>');
-} 
+}  */
 if(url.indexOf("grade.do")!=-1){
 	document.write('<li class="bj"><a href="<c:url value="/admin/grade.do?m=list"/>">班级管理</a></li>');
 }

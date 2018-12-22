@@ -19,6 +19,8 @@ public class UserEntity implements Serializable{
 	private String email;
 	private boolean enable=true;
 	private String authorite; //ROLE_USER,ROLE_SUPERVISOR
+	private String phoneNumber;
+	private String realName;
 	
 	@Id
 	@GeneratedValue
@@ -63,5 +65,21 @@ public class UserEntity implements Serializable{
 	public void setAuthorite(String authorite) {
 		this.authorite = authorite;
 	}
+	@Column(name="phonenumber",length=11,nullable=false)
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+	@Column(name="realname",length=50,nullable=false)
+	public String getRealName() {
+		return realName;
+	}
+	public void setRealName(String realName) {
+		this.realName = realName;
+	}
+	
+	
 	
 }

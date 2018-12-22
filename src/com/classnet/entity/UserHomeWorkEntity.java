@@ -22,6 +22,7 @@ public class UserHomeWorkEntity implements Serializable{
 	private HomeWorkTitleEntity title;
 	private String name;
 	private Date addtime;
+	private Integer score;
 	
 	@Id
 	@GeneratedValue
@@ -61,5 +62,10 @@ public class UserHomeWorkEntity implements Serializable{
 	public void setUserEntity(UserEntity userEntity) {
 		this.userEntity = userEntity;
 	}
-	
+	public Integer getScore() {
+		return score;
+	}
+	public void setScore(Integer score) {
+		this.score = score;
+	}
 }

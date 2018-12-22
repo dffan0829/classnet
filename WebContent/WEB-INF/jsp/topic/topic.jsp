@@ -130,7 +130,7 @@
 								</c:if>
 								<table width="100%" border="0" cellpadding="0" cellspacing="1" style="margin-top:8px;border:1px solid #a8d7f1">
 								<tr>
-									<td width="20%" valign="top" align="center">
+									<!-- <td width="20%" valign="top" align="center">
 										<table width="90%" border="0" cellpadding="0" cellspacing="0" style="border:1px solid #a8d7f1;margin-top:10px;margin-bottom:10px;">
 										<tr><td height="30" align="left" style="border-bottom: 1px solid #a8d7f1">&nbsp;赞助商广告</td></tr>
 										<tr><td align="left" height="25">&nbsp;<a href="">超经典全套JAVA EE教程,免费</a></td></tr>
@@ -145,7 +145,7 @@
 										<tr><td align="left" height="25">&nbsp;<a href="">PHP暑期班 六月报名7.5折</a></td></tr>
 										<tr><td align="left" height="25">&nbsp;<a href="">Android 移动开发实战 免</a></td></tr>
 										</table>
-									</td>
+									</td> -->
 									<td width="80%" valign="top">
 										<form action="<c:url value="/topic/reply.do"/>" method="post" style="margin:0" onsubmit="return check(this)">
 										<table width="100%" border="0" cellpadding="0" cellspacing="0" style="margin-top:10px;">

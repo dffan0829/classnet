@@ -9,6 +9,10 @@
 		<link href="<%=request.getContextPath()%>/css/user.css"
 			rel="stylesheet" type="text/css" />
 		<title>教师中心</title>
+		<style type="text/css">
+		#regtable{line-height: 30px;}
+		#regtable tr td{padding:4px;}
+</style>
 	</head>
 	<body>
 		<div class="wrap">
@@ -25,19 +29,19 @@
 								您现在的位置：
 								<a href="<c:url value="/"/>"><f:message key="site_name" />
 								</a>&gt;&gt;
-								<a href="<c:url value="/master/"/>">教师中心</a>
+								<a href="<c:url value="/teacher/"/>">教师中心</a>
 							</div>
 							<div class="c_spacing"></div>
 							<div class="u_form1">
 								<div style="text-align: center">
-									<table width="100%" border="0" cellpadding="0" cellspacing="0">
+									<table width="100%" border="0" cellpadding="5" cellspacing="0">
 										<tr align="center">
 											<td id="TabTitle0" class="titlemouseover">
 												教师信息
 											</td>
 										</tr>
 									</table>
-									<table width="100%" border="0" cellpadding="5" cellspacing="1"
+									<table id="regtable" width="100%" border="0" cellpadding="5" cellspacing="1"
 										class="border" style="text-align: left;line-height: 30px;">
 										<tr>
 											<td align="right" width="20%">
@@ -48,11 +52,43 @@
 											</td>
 										</tr>
 										<tr>
+											<td align="right" width="20%">
+												教师姓名:
+											</td>
+											<td align="left">
+												<c:out value="${userEntity.realName}" />
+											</td>
+										</tr>
+										<tr>
+											<td align="right" width="20%">
+												教师联系电话:
+											</td>
+											<td align="left">
+												<c:out value="${userEntity.phoneNumber}" />
+											</td>
+										</tr>
+										<tr>
 											<td align="right">
 												邮箱:
 											</td>
 											<td align="left">
 												<c:out value="${userEntity.email}" />
+											</td>
+										</tr>
+										<tr>
+											<td align="right">
+												所在名称:
+											</td>
+											<td align="left">
+												<c:out value="${grade.className}" />
+											</td>
+										</tr>
+										<tr>
+											<td align="right">
+												班级人数:
+											</td>
+											<td align="left">
+												<c:out value="${grade.classNum}" />
 											</td>
 										</tr>
 									</table>

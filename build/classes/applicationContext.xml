@@ -43,6 +43,7 @@
 				<value>com.hyitclassnet.entities.Category</value>
 				<value>com.hyitclassnet.entities.Grade</value>
 				<value>com.hyitclassnet.entities.StudentInfoEntities</value>
+				<value>com.hyitclassnet.entities.SignIn</value>
 			</list>
 		</property>
 	</bean>

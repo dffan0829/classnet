@@ -25,7 +25,7 @@
 								您现在的位置：
 								<a href="<c:url value="/"/>"><f:message key="site_name" />
 								</a>&gt;&gt;
-								<a href="<c:url value="/master/"/>">会员中心</a>
+								<a href="<c:url value="/master/"/>">学生中心</a>
 							</div>
 							<div class="c_spacing"></div>
 							<div class="u_form1">
@@ -33,7 +33,7 @@
 									<table width="100%" border="0" cellpadding="0" cellspacing="0">
 										<tr align="center">
 											<td id="TabTitle0" class="titlemouseover">
-												会员信息
+												学生信息
 											</td>
 										</tr>
 									</table>

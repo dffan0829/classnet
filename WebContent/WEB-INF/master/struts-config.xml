@@ -29,6 +29,13 @@
   		<forward name="list" path="/../WEB-INF/jsp/master/topiclist.jsp"></forward>
   		<forward name="addtopic" path="/../WEB-INF/jsp/master/addtopic.jsp"></forward>
   	</action>
+  	
+  	<action path="/student"
+  			scope="request"
+  			parameter="m"
+  			type="org.springframework.web.struts.DelegatingActionProxy">
+  		<forward name="signinlst" path="/../WEB-INF/jsp/master/signinlst.jsp"></forward>
+  	</action>
   </action-mappings>
 </struts-config>
 

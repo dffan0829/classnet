@@ -29,7 +29,13 @@
 						<div class="c_spacing"></div>
 						<div class="u_form1">
 							<div style="text-align: center">
-								<h2>导入学生信息</h2>
+									<table width="100%" border="0" cellpadding="5" cellspacing="0">
+										<tr align="center">
+											<td id="TabTitle0" class="titlemouseover">
+												EXCEL导入学生
+											</td>
+										</tr>
+									</table>
 								<form
 									action="<%=request.getContextPath()%>/teacher/teacherOperate.do?m=doExcelImport"
 									method="post" enctype="multipart/form-data">

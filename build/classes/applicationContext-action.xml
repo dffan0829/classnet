@@ -166,7 +166,7 @@
 		<property name="answerDao" ref="answerDao"></property>
 	</bean>
 
-	<!-- 用户中心 -->
+	<!-- 学生中心 -->
 	<bean name="/master/index" class="com.classnet.action.master.IndexAction">
 		<property name="userDao" ref="userDao"></property>
 	</bean>
@@ -181,6 +181,9 @@
 		<property name="topicDao" ref="topicDao"></property>
 		<property name="topicMenuDao" ref="topicMenuDao"></property>
 		<property name="answerDao" ref="answerDao"></property>
+	</bean>
+	<bean name="/master/student" class="com.hyitclassnet.action.student.StudentAction">
+		<property name="signInDao" ref="signInDao"></property>
 	</bean>
 
 	<!-- fckeditor上传图片 -->
@@ -207,9 +210,12 @@
 	<!-- 教师中心 -->
 	<bean name="/teacher/index" class="com.hyitclassnet.action.teacher.IndexAction">
 		<property name="userDao" ref="userDao"></property>
+		<property name="gradeDao" ref="gradeDao"></property>
 	</bean>
 	<bean name="/teacher/teacherOperate" class="com.hyitclassnet.action.teacher.TeacherAction">
 		<property name="studentDao" ref="studentDao"></property>
+		<property name="userDao" ref="userDao"></property>
+		<property name="gradeDao" ref="gradeDao"></property>
 	</bean>
 	<bean name="/teacher/homework" class="com.classnet.action.admin.HomeWorkAction">
 		<property name="homeWorkTitleDao" ref="homeWorkTitleDao"></property>

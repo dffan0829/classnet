@@ -4,52 +4,63 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="UTF-8">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link href="<%=request.getContextPath()%>/css/default.css"
-	rel="stylesheet" type="text/css" />
-<link href="<%=request.getContextPath()%>/css/user.css" rel="stylesheet"
-	type="text/css" />
+<link href="<%=request.getContextPath()%>/css/default.css" rel="stylesheet" type="text/css" />
+<link href="<%=request.getContextPath()%>/css/user.css" rel="stylesheet" type="text/css" />
 <title>作业列表</title>
 <script type="text/javascript">
-	function selectAll(obj) {
+function del(id) {
+	if(id!=0){
+		location='<c:url value="/admin/homework.do?m=del&id="/>'+id+"&titleId=<c:out value="${titleEntity.id}"/>";
+	}
+	else{
 		var array = document.getElementsByName("hwId");
-		if (array) {
-			for (var i = 0; i < array.length; i++) {
-				if (obj.checked) {
-					array[i].checked = true;
-				} else {
-					array[i].checked = false;
-				}
+		var idstr="";
+		for(var i=0;i<array.length;i++){
+			if(array[i].checked){
+				idstr+=array[i].value+",";
 			}
 		}
-	}
-	function check(form) {
-		if (form.key.value == "") {
-			alert("不能为空");
-			return false;
+		if(idstr){
+			location='<c:url value="/admin/homework.do?m=del&ids="/>'+idstr+"&titleId=<c:out value="${titleEntity.id}"/>";;
 		}
-		return true;
+		else{
+			alert("您还未选择");
+		}
 	}
-	function del(id) {
-		if (id != 0) {
-			location = '<c:url value="/teacher/homework.do?m=del&id="/>' + id
-					+ "&titleId=<c:out value="${titleEntity.id}"/>";
-		} else {
-			var array = document.getElementsByName("hwId");
-			var idstr = "";
-			for (var i = 0; i < array.length; i++) {
-				if (array[i].checked) {
-					idstr += array[i].value + ",";
-				}
-			}
-			if (idstr) {
-				location = '<c:url value="/teacher/homework.do?m=del&ids="/>'
-						+ idstr + "&titleId=<c:out value="${titleEntity.id}"/>";
-				;
+} 
+
+function check(form) {
+	if (form.key.value == "") {
+		alert("不能为空");
+		return false;
+	}
+	return true;
+}
+
+function selectAll(obj) {
+	var array = document.getElementsByName("hwId");
+	if (array) {
+		for (var i = 0; i < array.length; i++) {
+			if (obj.checked) {
+				array[i].checked = true;
 			} else {
-				alert("您还未选择");
+				array[i].checked = false;
 			}
 		}
 	}
+}
+
+function setScore(id){
+	var score = prompt("请输入作业分数","请在这里输入分数"); 
+	if(score == ""){
+		alert("分数不能为空!");
+	}else{
+		location='<c:url value="/teacher/homework.do?m=homeworkScore&id='+id+'&score='+score+'"/>';
+	}
+}
+
+
+
 </script>
 </head>
 <body>
@@ -130,6 +141,7 @@
 															href="javascript:del(${hw.id})">删除</a>&nbsp;&nbsp; <a
 															target="_blank"
 															href="<c:url value="/teacher/homework.do?m=download&id=${hw.id}"/>">下载</a>
+														   <a href="javascript:void(0)" onclick="setScore('${hw.id}')">打分</a>
 														</td>
 													</tr>
 												</c:forEach>

@@ -25,4 +25,5 @@
 	<bean id="categoryDao" class="com.hyitclassnet.dao.impl.CategoryImpl" parent="baseDao"></bean>
 	<bean id="gradeDao" class="com.hyitclassnet.dao.impl.GradeDaoImpl" parent="baseDao"></bean>
 	<bean id="studentDao" class="com.hyitclassnet.dao.impl.StudentDaoImpl" parent="baseDao"></bean>
+	<bean id="signInDao" class="com.hyitclassnet.dao.impl.SignInDaoImpl" parent="baseDao"></bean>
 </beans>

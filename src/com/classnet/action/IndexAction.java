@@ -113,8 +113,6 @@ public class IndexAction extends Action{
 		category.addOrder(Order.asc("categoryOrder"));
 		category.add(Restrictions.eq("parentId", 0));
 		List<Category> catogoryList = categoryDao.findByExample(category);
-		
-		System.out.println("戴非凡----------------------------");
 
 		request.setAttribute("catogoryList", catogoryList);
 		request.setAttribute("newsTJList", newsTJList);

@@ -9,6 +9,17 @@
 <link href="<%=request.getContextPath()%>/css/user.css" rel="stylesheet"
 	type="text/css" />
 <title>添加作业</title>
+<script type="text/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript">
+ function check(form){
+	var rowguid =  $(":input[type='hidden']").val();
+	if(rowguid!= ""){
+		$(form).attr("action","<c:url value='/teacher/homework.do?m=doEditTitle'/>");
+		return true;
+	}
+ }
+ 
+</script>
 </head>
 <body>
 	<div class="wrap">

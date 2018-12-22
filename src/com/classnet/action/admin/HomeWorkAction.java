@@ -89,6 +89,26 @@ public class HomeWorkAction extends DispatchAction{
 		request.setAttribute("homeWorkTitleEntity", entity);
 		return mapping.findForward("addTitle");
 	}
+	
+	public ActionForward homeworkScore(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response)
+					throws Exception {
+
+		int id = WebUtil.getInteger(request, "id");
+		int score = WebUtil.getInteger(request, "score");
+		
+		UserHomeWorkEntity entity = userHomeWorkDao.selectById(UserHomeWorkEntity.class, id);
+		if(entity!=null){
+			entity.setScore(score);
+			userHomeWorkDao.update_(entity);
+		}
+		response.sendRedirect(request.getContextPath()+"/teacher/homework.do?m=titleList");
+		return null;
+		
+	}
+	
+	
+	
 	public ActionForward doEditTitle(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
@@ -202,40 +222,9 @@ public class HomeWorkAction extends DispatchAction{
 	public ActionForward del(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		
-		System.out.println("delete---------------");
-		
-		int titleId = WebUtil.getInteger(request, "titleId");
 		int id = WebUtil.getInteger(request, "id");
-		String ids = request.getParameter("ids");
-		if(id!=0){
-			UserHomeWorkEntity entity = userHomeWorkDao.selectById(UserHomeWorkEntity.class, id);
-			if(entity!=null){
-				HomeWorkTitleEntity titleEntity = entity.getTitle();
-				File file = new File(path+"/homework/"+titleEntity.getId()+"/"+entity.getName());
-				userHomeWorkDao.delete_(entity);
-				if(file.exists()){
-					file.delete();
-				}
-			}
-		}
-		else if(!WebUtils.isEmpty(ids)){
-			String [] array = ids.split(",");
-			for(String idstr : array){
-				int mid = WebUtils.StringToInt(idstr);
-				if(mid!=0){
-					UserHomeWorkEntity entity = userHomeWorkDao.selectById(UserHomeWorkEntity.class, mid);
-					if(entity!=null){
-						HomeWorkTitleEntity titleEntity = entity.getTitle();
-						File file = new File(path+"/homework/"+titleEntity.getId()+"/"+entity.getName());
-						userHomeWorkDao.delete_(entity);
-						if(file.exists()){
-							file.delete();
-						}
-					}
-				}
-			}
-		}
+		HomeWorkTitleEntity homeWorkTitleEntity = homeWorkTitleDao.selectById(HomeWorkTitleEntity.class, id);
+		homeWorkTitleDao.delete_(homeWorkTitleEntity);
 		response.sendRedirect(request.getContextPath()+"/teacher/homework.do?m=titleList");
 		return null;
 	}
