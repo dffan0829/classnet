@@ -62,6 +62,7 @@
 			type="org.springframework.web.struts.DelegatingActionProxy">
 			<forward name="list" path="/../WEB-INF/jsp/admin/userlist.jsp"></forward>
 			<forward name="add" path="/../WEB-INF/jsp/admin/adduser.jsp"></forward>
+			<forward name="stulist" path="/../WEB-INF/jsp/admin/stulist.jsp"></forward>
 		</action>
 		<action path="/homework" scope="request" parameter="m"
 			type="org.springframework.web.struts.DelegatingActionProxy">
@@ -83,6 +84,11 @@
 			type="org.springframework.web.struts.DelegatingActionProxy">
 			<forward name="list" path="/../WEB-INF/jsp/admin/gradelist.jsp"></forward>
 			<forward name="addGrade" path="/../WEB-INF/jsp/admin/addgrade.jsp"></forward>
+		</action>
+		<action path="/student" scope="request" parameter="m"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="stulist" path="/../WEB-INF/jsp/admin/stulist.jsp"></forward>
+			<forward name="add" path="/../WEB-INF/jsp/admin/addstu.jsp"></forward>
 		</action>
 	</action-mappings>
 </struts-config>

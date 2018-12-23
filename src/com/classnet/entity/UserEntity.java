@@ -21,6 +21,7 @@ public class UserEntity implements Serializable{
 	private String authorite; //ROLE_USER,ROLE_SUPERVISOR
 	private String phoneNumber;
 	private String realName;
+	private String fkid;
 	
 	@Id
 	@GeneratedValue
@@ -79,7 +80,11 @@ public class UserEntity implements Serializable{
 	public void setRealName(String realName) {
 		this.realName = realName;
 	}
-	
-	
-	
+	@Column(name="fkid",nullable=true)
+	public String getFkid() {
+		return fkid;
+	}
+	public void setFkid(String fkid) {
+		this.fkid = fkid;
+	}
 }

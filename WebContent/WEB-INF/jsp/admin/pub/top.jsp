@@ -62,6 +62,7 @@ else{
 </div>
 <div class="clear"></div>
 <div class="king">
-<p>我的信息：管理供用信息</p>
+<p>我的信息：管理供用信息 &nbsp; &nbsp;<a href="/classnet" style="text-decoration: none">网站首页</a></p>
+
 </div>
 </div>

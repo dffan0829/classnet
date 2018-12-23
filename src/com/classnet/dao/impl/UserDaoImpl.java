@@ -22,9 +22,8 @@ public class UserDaoImpl extends HibernateSupportDao<UserEntity> implements User
 	@SuppressWarnings("unchecked")
 	public List<UserEntity> getTeacher(){
 		try{
-			String sql = "select * from user_table where authorite = 'ROLE_TEACHER'";
+			String sql = "select * from user_table where authorite = 'ROLE_TEACHER' and id not in (select teacherid from grade)";
 			Query q = getSessionFactory().getCurrentSession().createSQLQuery(sql);
-			System.out.println(q.list());
 			return q.list();
 		}catch(RuntimeException e){
 			throw e;

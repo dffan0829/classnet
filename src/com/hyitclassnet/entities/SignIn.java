@@ -28,9 +28,7 @@ public class SignIn implements Serializable {
 	private String address;
 
 	@Id
-	// 配置uuid，本来jpa是不支持uuid的，但借用hibernate的方法可以实现。
-	@GeneratedValue(generator = "uuid")
-	@GenericGenerator(name = "uuid", strategy = "uuid")
+	@GenericGenerator(name = "assigned", strategy = "auto")
 	public String getRowguid() {
 		return rowguid;
 	}

@@ -114,6 +114,16 @@
 										<td align="right">重复密码:</td>
 										<td align="left"><input type="password" name="password1" id="password1"/><span style="color:red" id="password1span"></span></td>
 									</tr>
+									
+									<tr>
+										<td align="right">真实姓名:</td>
+										<td align="left"><input type="text" name="realName" id="realName" maxlength="24"/><span style="color:red" id="emailspan"></span></td>
+									</tr>
+									<tr>
+										<td align="right">手机号码:</td>
+										<td align="left"><input type="text" name="phoneNumber" id="phoneNumber" maxlength="24"/><span style="color:red" id="emailspan"></span></td>
+									</tr>
+									
 									<tr>
 										<td align="right">邮箱:</td>
 										<td align="left"><input type="text" name="email" id="email" maxlength="24"/><span style="color:red" id="emailspan"></span></td>

@@ -35,6 +35,9 @@
   			parameter="m"
   			type="org.springframework.web.struts.DelegatingActionProxy">
   		<forward name="signinlst" path="/../WEB-INF/jsp/master/signinlst.jsp"></forward>
+  		<forward name="updatepwd" path="/../WEB-INF/jsp/master/updatepwd.jsp"></forward>
+		<forward name="updateinfo" path="/../WEB-INF/jsp/master/studentinfo.jsp"></forward>
+		<forward name="succ" path="/../WEB-INF/jsp/teacher/index.jsp"></forward>
   	</action>
   </action-mappings>
 </struts-config>

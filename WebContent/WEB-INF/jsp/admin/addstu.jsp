@@ -39,7 +39,7 @@ function check(form){
 </td>
 <td valign="top">
 	<div class="right">
-	<form action="<c:url value="/admin/user.do?m=doAddUser"/>" onsubmit="return check(this);" method="post"  style="margin:0">
+	<form action="<c:url value="/admin/student.do?m=doAddUser"/>" onsubmit="return check(this);" method="post"  style="margin:0">
 	<table width="80%" border="0" cellpadding="0" cellspacing="1" bgcolor="#d1d5d8">
 	  <tr>
 		<td height="28" colspan="2" bgcolor="#c6dbf8" class="biaoti" style="padding:0;">
@@ -69,16 +69,7 @@ function check(form){
 	  	<td width="15%" height="28" align="right" bgcolor="#edf1f7">邮箱：</td>
 		<td height="28" bgcolor="#FFFFFF"><input type="text" name="email" id="email" value="${user.email}"  maxlength="50"/><p>请输入邮箱</p></td>
 	  </tr>
-	  <tr>
-	  	<td width="15%" height="28" align="right" bgcolor="#edf1f7">用户类型：</td>
-		<td height="28" bgcolor="#FFFFFF">
-			<select name="role">
-			 <option value="ROLE_SUPERVISOR" selected="selected">管理员</option>
-			 <option value="ROLE_TEACHER">教师</option>
-			</select>
-			<p>请选择角色</p>
-		</td>
-	  </tr>
+	  <input type="hidden" name="role" id="role" value="ROLE_ROLE_USER"/>
 	</table>
 	<div class="anniu">
 	<p><input type="submit" value="提交" class="fabu" /> <input type="reset" value="返回" class="fabu" onclick="javascript:window.history.go(-1)"/></p>

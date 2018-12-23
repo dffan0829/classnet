@@ -21,5 +21,11 @@ if(url.indexOf("grade.do")!=-1){
 else{
 	document.write('<li><a href="<c:url value="/admin/grade.do?m=list"/>">班级管理</a></li>');
 }
+if(url.indexOf("student.do")!=-1){
+	document.write('<li class="bj"><a href="<c:url value="/admin/student.do?m=stuList"/>">学生管理</a></li>');
+}
+else{
+	document.write('<li><a href="<c:url value="/admin/student.do?m=stuList"/>">学生管理</a></li>');
+}
 document.write('</ul>');
 </script>

@@ -26,12 +26,10 @@ public class StudentInfoEntities  implements Serializable{
 	private String stuTel;
 	private String email;
 	private String address;
-	private Integer classno;
+	private String classno;
 
 	@Id
-	//配置uuid，本来jpa是不支持uuid的，但借用hibernate的方法可以实现。
-	@GeneratedValue(generator = "uuid")
-	@GenericGenerator(name = "uuid", strategy = "uuid")
+	@GenericGenerator(name = "assigned", strategy = "AUTO")
 	public String getRowguid() {
 		return rowguid;
 	}
@@ -95,11 +93,11 @@ public class StudentInfoEntities  implements Serializable{
 	}
 
 	@Column(name = "classno", length = 50, nullable = false)
-	public Integer getClassno() {
+	public String getClassno() {
 		return classno;
 	}
 
-	public void setClassno(Integer classno) {
+	public void setClassno(String classno) {
 		this.classno = classno;
 	}
 

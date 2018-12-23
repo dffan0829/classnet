@@ -8,11 +8,9 @@
 	rel="stylesheet" type="text/css" />
 <link href="<%=request.getContextPath()%>/css/user.css" rel="stylesheet"
 	type="text/css" />
-<title>学生签到记录</title>
+<title>考勤查看</title>
 <script type="text/javascript">
-function signin(){
-	location='<c:url value="/master/student.do?m=signIn&flag=true" />';
-}
+	
 </script>
 </head>
 <body>
@@ -29,19 +27,32 @@ function signin(){
 						<div class="r_navigation">
 							您现在的位置： <a href="<c:url value="/"/>"><f:message
 									key="site_name" /> </a>&gt;&gt; <a
-								href="<c:url value="/teacher/"/>">学生中心</a>
+								href="<c:url value="/teacher/"/>">教师中心</a>
 						</div>
 						<div class="c_spacing"></div>
 						<div class="u_form1">
 							<div style="text-align: center">
-								<table width="100%" border="0" cellpadding="0" cellspacing="0">
-										<tr align="center">
-											<td id="TabTitle0" class="titlemouseover">
-												学生签到
-											</td>
-										</tr>
+								<table width="100%" border="0" cellpadding="5" cellspacing="0">
+									<tr align="center">
+										<td id="TabTitle0" class="titlemouseover">考勤查看</td>
+									</tr>
 								</table>
-								<button onclick="signin()">点击签到</button>
+								<!-- 根据班级进行查询 -->
+								<form action="<%=request.getContextPath()%>/teacher/teacherOperate.do?m=querySignIn" method="post">
+									<select name="grade">
+										<c:forEach items="${gradeList}" var="grade">
+										    <c:choose>
+												<c:when test="${key == grade.classId}">
+													<option value="${grade.classId }" selected="selected">${grade.className }</option>
+												</c:when>
+												<c:otherwise>
+													<option value="${grade.classId }">${grade.className }</option>
+												</c:otherwise>
+											</c:choose>
+										</c:forEach>
+									</select>
+									<input type="submit" value="提交" />
+								</form>
 								<table width="99%" border="0" cellpadding="0" cellspacing="1"
 									bgcolor="#dae2e5">
 									<tr>
@@ -59,28 +70,21 @@ function signin(){
 												align="center" class="STYLE3">签到地点</div></td>
 									</tr>
 									<c:choose>
-										<c:when test="${not empty singinlst}">
-											<c:forEach items="${singinlst}" var="hw" varStatus="vs">
+										<c:when test="${not empty signlst}">
+											<c:forEach items="${signlst}" var="hw" varStatus="vs">
 												<tr>
-													<td height="30" bgcolor="#FFFFFF" align="center">
-													  <c:out value="${vs.index+1}" />
-													</td>
-													<td bgcolor="#FFFFFF" align="center">
-													   <c:out value="${hw.stuno}" />
-													</td>
-													<td bgcolor="#FFFFFF" align="center">
-														<c:out value="${hw.stuname}" />
-													</td>
-													<td bgcolor="#FFFFFF" align="center">
-														<c:out value="${hw.classname}" />
-													</td>
-													<td bgcolor="#FFFFFF" align="center">
-<%-- 														<c:out value="${hw.time}" />
- --%>														<f:formatDate value="${hw.time}" pattern="yyyy-MM-dd HH:mm" />
-													</td>
-													<td bgcolor="#FFFFFF" align="center">
-														<c:out value="${hw.address}" />
-													</td>
+													<td height="30" bgcolor="#FFFFFF" align="center"><c:out
+															value="${vs.index+1}" /></td>
+													<td bgcolor="#FFFFFF" align="center"><c:out
+															value="${hw.stuno}" /></td>
+													<td bgcolor="#FFFFFF" align="center"><c:out
+															value="${hw.stuname}" /></td>
+													<td bgcolor="#FFFFFF" align="center"><c:out
+															value="${hw.classname}" /></td>
+													<td bgcolor="#FFFFFF" align="center"><f:formatDate
+															value="${hw.time}" pattern="yyyy-MM-dd HH:mm" /></td>
+													<td bgcolor="#FFFFFF" align="center"><c:out
+															value="${hw.address}" /></td>
 												</tr>
 											</c:forEach>
 										</c:when>

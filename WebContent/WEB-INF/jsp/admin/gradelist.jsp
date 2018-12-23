@@ -50,8 +50,8 @@ function search(){
 		<tr>
 	      <td height="30" bgcolor="#FFFFFF" align="center">
 	        <c:out value="${vs.index+1}"/></td>
-	      <td height="30" bgcolor="#FFFFFF" align="left" style="padding-left:10px;"><c:out value="${grade.classId}"/></td>
-	      <td height="30" bgcolor="#FFFFFF" align="left" style="padding-left:10px;"><c:out value="${grade.className}"/></td>
+	      <td height="30" bgcolor="#FFFFFF" align="center"><c:out value="${grade.classId}"/></td>
+	      <td height="30" bgcolor="#FFFFFF" align="center"><c:out value="${grade.className}"/></td>
 	      <td height="30" bgcolor="#FFFFFF" align="center"><c:out value="${grade.classNum}"/></td>
 	      <td width="10%" height="30" bgcolor="#FFFFFF" align="center">
 	      		<a href="<c:url value="/admin/grade.do?m=delGrade&id=${grade.rowGuid}"/>">删除</a>

@@ -36,7 +36,7 @@ public class UserAction extends DispatchAction{
 		int page = WebUtil.getPage(request);
 		int page_size=10;
 		DetachedCriteria dc = DetachedCriteria.forClass(UserEntity.class);
-		//dc.add(Restrictions.eq("authorite", "ROLE_USER"));
+		dc.add(Restrictions.ne("authorite", "ROLE_USER"));
 		if(!WebUtils.isEmpty(key)){
 			key = new String(key.getBytes("ISO8859-1"),"utf-8");
 			dc.add(Restrictions.like("username", key, MatchMode.ANYWHERE));
@@ -48,6 +48,7 @@ public class UserAction extends DispatchAction{
 		request.setAttribute("userList", userList);
 		return mapping.findForward("list");
 	}
+	
 	public ActionForward changestatus(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
@@ -87,6 +88,8 @@ public class UserAction extends DispatchAction{
 	public ActionForward doAddUser(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
+		String realName = request.getParameter("realName");
+		String phoneNumber = request.getParameter("phoneNumber");
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		String email = request.getParameter("email");
@@ -99,6 +102,8 @@ public class UserAction extends DispatchAction{
 				entity.setPassword(password);
 				entity.setEmail(email);
 				entity.setAuthorite(authorite);
+				entity.setRealName(realName);
+				entity.setPhoneNumber(phoneNumber);
 			}
 			userDao.update_(entity);
 		}else{
@@ -107,6 +112,8 @@ public class UserAction extends DispatchAction{
 			entity.setPassword(password);
 			entity.setEmail(email);
 			entity.setAuthorite(authorite);
+			entity.setRealName(realName);
+			entity.setPhoneNumber(phoneNumber);
 
 			userDao.save_(entity);
 		}

@@ -26,5 +26,9 @@
 				align="absmiddle"
 				src="<f:message key="image_http_url"/>/images/article_add.gif"
 				style="border: 0" />&nbsp;&nbsp;布置作业</a></li>
+		<li><a href="<c:url value="/teacher/teacherOperate.do?m=querySignIn" />"><img
+				align="absmiddle"
+				src="<f:message key="image_http_url"/>/images/article_add.gif"
+				style="border: 0" />&nbsp;&nbsp;考勤查看</a></li>
 	</ul>
 </div>

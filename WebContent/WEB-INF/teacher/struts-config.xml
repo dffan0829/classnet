@@ -34,6 +34,7 @@
 			<forward name="updatepwd" path="/../WEB-INF/jsp/teacher/updatepwd.jsp"></forward>
 			<forward name="updateinfo" path="/../WEB-INF/jsp/teacher/teacherinfo.jsp"></forward>
 			<forward name="succ" path="/../WEB-INF/jsp/teacher/index.jsp"></forward>
+			<forward name="signlst" path="/../WEB-INF/jsp/teacher/signlst.jsp"></forward>
 		</action>
 	</action-mappings>
 </struts-config>
