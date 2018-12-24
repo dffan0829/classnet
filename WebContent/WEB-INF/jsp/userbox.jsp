@@ -42,9 +42,9 @@
 			    <li>密&nbsp;&nbsp;&nbsp;&nbsp;码：<input name="j_password" type="password" class="inputtext" style="width: 125px;" /></li>
 			  	<li>  
 			  		  验证码：
-				  	 <input name="code" type="text" class="inputtext" style="width: 50px;" />
+				  	 <input name="j_validation_code" type="text" class="inputtext" style="width: 50px;" />
 				  	 <img id="imagekey" alt="" onclick="changeimagekey()" src="<c:url value="/imagekey.jsp"/>">
-			  	</li>
+			  	</li> 
 			  	
 			  <!--   <li>登录身份：
 					<select style="width: 100px;">

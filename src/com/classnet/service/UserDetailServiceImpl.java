@@ -1,7 +1,5 @@
 package com.classnet.service;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.acegisecurity.GrantedAuthority;
 import org.acegisecurity.GrantedAuthorityImpl;
 import org.acegisecurity.userdetails.User;
@@ -32,9 +30,9 @@ public class UserDetailServiceImpl implements UserDetailsService {
 			throws UsernameNotFoundException, DataAccessException {
 
 		//判断验证码
-		ActionContext ctx = ActionContext.getContext();
-		Object o = ctx.getSession().values();
-		System.out.println(String.valueOf(o));
+//		ActionContext ctx = ActionContext.getContext();
+//		Object o = ctx.getSession().values();
+//		System.out.println(String.valueOf(o));
 		
 		UserEntity entity = userDao.getUser(username);
 		if (entity == null)

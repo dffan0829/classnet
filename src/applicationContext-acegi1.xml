@@ -31,7 +31,7 @@
 		<property name="filterProcessesUrl" value="/logout"></property>
 	</bean>
 	
-	<bean id="authenticationProcessingFilter" class="org.acegisecurity.ui.webapp.AuthenticationProcessingFilter">
+	<bean id="authenticationProcessingFilter" class="com.hyitclassnet.filter.LoginCodeFilter">
 		<property name="authenticationManager" ref="authenticationManager"/>
 		<property name="authenticationFailureUrl" value="/acegilogin.jsp?login_error=1"/>
 		<property name="defaultTargetUrl" value="/"/>
@@ -54,10 +54,11 @@
 				<ref local="rememberMeAuthenticationProvider" />
 			</list>
 		</property>
-	</bean>
+	</bean>	
 	<bean id="daoAuthenticationProvider"
 		class="org.acegisecurity.providers.dao.DaoAuthenticationProvider">
 		<property name="userDetailsService" ref="userDetailServiceImpl"></property>
+		<property name="hideUserNotFoundExceptions" value="false" />    
 		<!-- <property name="saltSource" ref="saltSource"></property> -->
 		<!-- <property name="passwordEncoder" ref="passwordEncoder"></property> -->
 	</bean>

@@ -8,6 +8,11 @@
 		rel="stylesheet" type="text/css" />
 	<link href="<%=request.getContextPath()%>/css/prompts.css"
 		rel="stylesheet" type="text/css" />
+	<script type="text/javascript">
+		function changeimagekey(){
+			document.getElementById("imagekey").src="<c:url value="/imagekey.jsp?d="/>"+new Date().getTime();
+		}
+	</script>
 	</head>
 	<body>
 		<div class="wrap">
@@ -17,18 +22,36 @@
 			</div>
 			<!--头部定义结束-->
 			<div id="center_all" class="main">
-				<div class="u_management_bg">
+				<div class="u_management_bg" style="width:450px;margin: 0 auto;">
 				    <form action="<c:url value='j_acegi_security_check'/>" method="post">
-				      <table width="70%" align="right" style="line-height: 30px;">
-				        <c:if test="${not empty param.login_error}">
-						<tr>
-							<td colspan="2" align="left">
-								<font color="red" > 用户名或密码错误</font>
-							</td>	
-						</tr>
-						</c:if>
+				      <table align="center" style="line-height: 30px;">
+				       <c:choose>
+						 <c:when test="${not empty codeerror}">
+							<tr>
+							  <td colspan="2" align="left">
+								 <font color="red" >验证码错误</font>
+							  </td>	
+							</tr>
+						 </c:when>
+						 <c:otherwise>
+					        <c:if test="${not empty param.login_error}">
+							  <tr>
+								  <td colspan="2" align="left">
+									  <font color="red" > 用户名或密码错误</font>
+								  </td>	
+							  </tr>
+							</c:if>							
+						 </c:otherwise>
+					  </c:choose>
 				        <tr><td width="50">用户名:</td><td><input type='text' name='j_username' <c:if test="${not empty param.login_error}">value='<c:out value="${ACEGI_SECURITY_LAST_USERNAME}"/>'</c:if> /></td></tr>
-				        <tr><td>密码:</td><td><input type='password' name='j_password' /></td></tr>
+				        <tr><td>密&nbsp;码:</td><td><input type='password' name='j_password' /></td></tr>
+				        <tr>
+				          <td>验证码:</td>
+				          <td>
+				          	 <input name="j_validation_code" type="text" class="inputtext" style="width: 50px;" />
+				             <img id="imagekey" alt="" onclick="changeimagekey()" src="<c:url value="/imagekey.jsp"/>">
+				          </td>
+				        </tr>
 				        <tr>
 				        	<td colspan='2'>
 				        		<input name="submit" type="submit" value="登录" />
