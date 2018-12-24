@@ -1,5 +1,7 @@
 package com.classnet.service;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.acegisecurity.GrantedAuthority;
 import org.acegisecurity.GrantedAuthorityImpl;
 import org.acegisecurity.userdetails.User;
@@ -12,6 +14,7 @@ import org.springframework.dao.DataAccessException;
 
 import com.classnet.dao.UserDao;
 import com.classnet.entity.UserEntity;
+import com.opensymphony.xwork2.ActionContext;
 
 public class UserDetailServiceImpl implements UserDetailsService {
 
@@ -21,12 +24,18 @@ public class UserDetailServiceImpl implements UserDetailsService {
 	}
 
 	public UserDetailServiceImpl() {
+		//System.out.println(req);
 	}
 
 	@SuppressWarnings("deprecation")
 	public UserDetails loadUserByUsername(String username)
 			throws UsernameNotFoundException, DataAccessException {
 
+		//判断验证码
+		ActionContext ctx = ActionContext.getContext();
+		Object o = ctx.getSession().values();
+		System.out.println(String.valueOf(o));
+		
 		UserEntity entity = userDao.getUser(username);
 		if (entity == null)
 			throw new UsernameNotFoundException("user don't exist");

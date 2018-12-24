@@ -40,6 +40,12 @@
 		%>
 				<li>用户名：<input name="j_username" type="text" class="inputtext" style="width: 125px;" /></li>
 			    <li>密&nbsp;&nbsp;&nbsp;&nbsp;码：<input name="j_password" type="password" class="inputtext" style="width: 125px;" /></li>
+			  	<li>  
+			  		  验证码：
+				  	 <input name="code" type="text" class="inputtext" style="width: 50px;" />
+				  	 <img id="imagekey" alt="" onclick="changeimagekey()" src="<c:url value="/imagekey.jsp"/>">
+			  	</li>
+			  	
 			  <!--   <li>登录身份：
 					<select style="width: 100px;">
 					  <option value="1">老师</option>

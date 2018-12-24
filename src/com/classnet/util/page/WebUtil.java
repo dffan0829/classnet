@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.acegisecurity.GrantedAuthority;
 import org.acegisecurity.context.SecurityContextHolder;
@@ -58,6 +59,12 @@ public class WebUtil {
 	public static String getParameter(HttpServletRequest req, String param) {
 		return req.getParameter(param);
 	}
+	
+
+	public static HttpSession getSession(HttpServletRequest req, String param) {
+		return req.getSession();
+	}
+	
 
 	public static String getParameter(HttpServletRequest req, String param,
 			String defaultV) {
