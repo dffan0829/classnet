@@ -33,9 +33,9 @@
 						<div class="clearbox"></div>
 					</div>
 					<div class="c_spacing"></div>
-					<%-- <div class="ADBanner">
+					<div class="ADBanner">
 						<img src="<f:message key="image_http_url"/>/images/ADBanner1.gif" />
-					</div> --%>
+					</div> 
 					<div class="c_spacing"></div>
 					<div id="moralEduSpace" class="goldenrod">
 						<dl>

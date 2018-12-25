@@ -76,7 +76,7 @@ public class ClazzEntity implements Serializable{
 	public void setPubtime(Date pubtime) {
 		this.pubtime = pubtime;
 	}
-	@Column(name="filename",length=40,nullable=false)
+	@Column(name="filename",length=40,nullable=true)
 	public String getFilename() {
 		return filename;
 	}

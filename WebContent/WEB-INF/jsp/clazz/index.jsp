@@ -86,7 +86,7 @@
 								<dl>
 									<dt class="c_title">
 										<div class="more"></div>
-										最新图文
+										推荐课程
 									</dt>
 									<dd class="c_content">
 										<!-- 显示8张最新图片文章 -->

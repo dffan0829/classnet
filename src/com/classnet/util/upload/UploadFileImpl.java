@@ -101,8 +101,8 @@ public class UploadFileImpl implements UploadFile, Serializable {
 	 * @see com.shsct.eq.util.upload.IUploadFile#save(java.lang.String)
 	 */
 	public void save(String fileName) throws UploadException,IOException{
-		if(isFileSizeMax())
-			throw new UploadException("文件超过了指定的容量,文件只支持"+sizeByStr());
+//		if(isFileSizeMax())
+//			throw new UploadException("文件超过了指定的容量,文件只支持"+sizeByStr());
 		filename = file.getFileName();
 		BufferedInputStream in = null;
 		BufferedOutputStream stream = null;

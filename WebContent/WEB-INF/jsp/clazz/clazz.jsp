@@ -40,9 +40,11 @@
             		<tr>
 						<td align="center" width="20%">作者：</td>
 				        <td align="left" width="30%"><c:out value="${clazzEntity.author}"/></td>
-						<td align="center" width="50%" rowspan=5>
-							<img src="<f:message key="image_http_url"/>/images/zizhan_xia.gif" style="cursor: pointer;" onclick="location='<f:message key="upload_http_path"/>/files/${clazzEntity.filename}'"/>
-						</td>
+				        <c:if test="${not empty clazzEntity.filename}">
+							<td align="center" width="50%" rowspan=5>
+								<img src="<f:message key="image_http_url"/>/images/zizhan_xia.gif" style="cursor: pointer;" onclick="location='<f:message key="upload_http_path"/>/files/${clazzEntity.filename}'"/>
+							</td>
+				        </c:if>
 				    </tr>
 					<tr>
 						<td align="center">作者单位：</td>
@@ -64,18 +66,20 @@
             </div>
             <!-- 正文 -->
             <div class="c_content_text">
-              <div class="c_content_overflow" id="fontzoom"> 
-   				<p align="center">
-   					<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0" width="680" height="538" align="middle">
-				        <param name="allowFullScreen" value="false" />
-				        <param name="movie" value="<f:message key="upload_http_path"/>/files/${clazzEntity.flashFilename}" />
-				        <param name="quality" value="high" />
-				        <param name="bgcolor" value="#ffffff" /> 
-						<param name="wmode" value="window" /> 
-				        <embed src="<f:message key="upload_http_path"/>/files/${clazzEntity.flashFilename}" quality="high" bgcolor="#ffffff" width="680" height="538" align="middle" allowScriptAccess="sameDomain" allowFullScreen="false" type="application/x-shockwave-flash" wmode="opaque" pluginspage="http://www.macromedia.com/go/getflashplayer" />
-			        </object>
-   				</p>
-   	 		 </div>
+            <c:if test="${not empty clazzEntity.flashFilename}">
+	              <div class="c_content_overflow" id="fontzoom"> 
+	   				<p align="center">
+	   				 	<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0" width="680" height="538" align="middle">
+					        <param name="allowFullScreen" value="false" />
+					        <param name="movie" value="<f:message key="upload_http_path"/>/files/${clazzEntity.flashFilename}" />
+					        <param name="quality" value="high" />
+					        <param name="bgcolor" value="#ffffff" /> 
+							<param name="wmode" value="window" /> 
+					        <embed src="<f:message key="upload_http_path"/>/files/${clazzEntity.flashFilename}" quality="high" bgcolor="#ffffff" width="680" height="538" align="middle" allowScriptAccess="sameDomain" allowFullScreen="false" type="application/x-shockwave-flash" wmode="opaque" pluginspage="http://www.macromedia.com/go/getflashplayer" />
+				        </object> 
+	   				</p>
+	   	 		 </div>
+            </c:if>
    	 		 <div>
    	 		    ${clazzEntity.content}
    	 		 </div>

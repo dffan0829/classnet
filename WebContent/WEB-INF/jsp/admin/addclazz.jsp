@@ -29,14 +29,14 @@ function check(form){
 		return false;
 	}
 	<c:if test="${empty clazzEntity}">
-	if(trim(form.file.value)==""){
+/* 	if(trim(form.file.value)==""){
 		alert("课程文件不能为空");
 		return false;
-	}
-	if(trim(form.flashFile.value)==""){
+	} */
+/* 	if(trim(form.flashFile.value)==""){
 		alert("FLASH文件不能为空");
 		return false;
-	}
+	} */
 	</c:if>
 	<c:if test="${not empty clazzEntity}">
 		form.action="<c:url value="/admin/clazz/clazz.do?m=doedit"/>";
@@ -140,7 +140,7 @@ function changeMenu(pid){
 	<td width="15%" height="28" align="right" bgcolor="#edf1f7"><c:if test="${empty clazzEntity}"><span>*</span></c:if>课程文件：</td>
 	<td height="28" bgcolor="#FFFFFF">
 		<input type="file" name="file" id="file"/>
-		<p>请上传课程文件,只能为doc,xls,ppt,txt格式的,大小不能超过5M</p></td>
+		<p>请上传课程文件,只能为doc,docx,xls,xlsx,ppt,txt格式的,大小不能超过5M</p></td>
 	</tr>
 	<tr>
 	<td width="15%" height="28" align="right" bgcolor="#edf1f7"><c:if test="${empty clazzEntity}"><span>*</span></c:if>FLASH文件：</td>
