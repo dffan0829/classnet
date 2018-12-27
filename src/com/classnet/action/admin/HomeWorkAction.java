@@ -3,6 +3,7 @@ package com.classnet.action.admin;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.OutputStream;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -69,10 +70,12 @@ public class HomeWorkAction extends DispatchAction{
 		
 		String title = request.getParameter("title");
 		String description = request.getParameter("description");
+		String endTime = request.getParameter("endTime");
 		HomeWorkTitleEntity entity = new HomeWorkTitleEntity();
 		entity.setTitle(title);
 		entity.setTime(new Date());
 		entity.setDescription(description);
+		entity.setEndTime(new SimpleDateFormat("yyyy-MM-dd").parse(endTime));
 		homeWorkTitleDao.save_(entity);
 		response.sendRedirect(request.getContextPath()+"/teacher/homework.do?m=titleList");
 		return null;
@@ -116,10 +119,12 @@ public class HomeWorkAction extends DispatchAction{
 		int id = WebUtil.getInteger(request, "id");
 		String title = request.getParameter("title");
 		String description = request.getParameter("description");
+		String endTime = request.getParameter("endTime");
 		HomeWorkTitleEntity entity = homeWorkTitleDao.selectById(HomeWorkTitleEntity.class, id);
 		if(entity!=null){
 			entity.setTitle(title);
 			entity.setDescription(description);
+			entity.setEndTime(new SimpleDateFormat("yyyy-MM-dd").parse(endTime));
 			homeWorkTitleDao.update_(entity);
 		}
 		response.sendRedirect(request.getContextPath()+"/teacher/homework.do?m=titleList");

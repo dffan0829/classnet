@@ -86,6 +86,14 @@ public class DoHomeWorkAction extends DispatchAction{
 		
 		UserHomeWorkForm userHomeWorkForm = (UserHomeWorkForm)form;
 		HomeWorkTitleEntity titleEntity = homeWorkTitleDao.selectById(HomeWorkTitleEntity.class, userHomeWorkForm.getTitleId());
+		
+		//已到了截止时间 不能提交
+		if(new Date().getTime() > titleEntity.getEndTime().getTime()){
+			response.setCharacterEncoding("utf-8");
+			response.getWriter().write("<script>alert('已过了截止时间!');window.location.go(-1);</script>");
+			return null;
+		}
+		
 		FormFile file = userHomeWorkForm.getWorkfile();
 		if(titleEntity!=null&&file!=null&&file.getFileSize()>0){
 			try{

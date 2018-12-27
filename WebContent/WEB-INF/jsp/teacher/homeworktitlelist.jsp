@@ -97,7 +97,9 @@ function del(id){
 											<td width="30%" height="30" bgcolor="#e5edfa"><div
 													align="center" class="STYLE3">题目名称</div></td>
 											<td width="20%" height="30" bgcolor="#e5edfa"><div
-													align="center" class="STYLE3">日期</div></td>
+													align="center" class="STYLE3">发布日期</div></td>
+										    <td width="20%" height="30" bgcolor="#e5edfa"><div
+													align="center" class="STYLE3">截止日期</div></td>
 											<td width="20%" height="30" bgcolor="#e5edfa"><div
 													align="center" class="STYLE3">操作选项</div></td>
 										</tr>
@@ -114,6 +116,8 @@ function del(id){
 																	value="${hw.title}" /></a></td>
 														<td bgcolor="#FFFFFF" align="center"><f:formatDate
 																value="${hw.time}" pattern="yyyy-MM-dd HH:mm" /></td>
+														<td bgcolor="#FFFFFF" align="center"><f:formatDate
+																value="${hw.endTime}" pattern="yyyy-MM-dd HH:mm" /></td>
 														<td bgcolor="#FFFFFF" align="center"><a
 															href="<c:url value="/teacher/homework.do?m=editTitle&id=${hw.id}"/>">修改</a>&nbsp;&nbsp;
 															<a href="javascript:del(${hw.id})">删除</a>&nbsp;&nbsp; <a

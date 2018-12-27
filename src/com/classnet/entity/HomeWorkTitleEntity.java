@@ -21,6 +21,7 @@ public class HomeWorkTitleEntity implements Serializable{
 	private String title;
 	private Date time;
 	private String description;
+	private Date endTime;
 	private List<UserHomeWorkEntity> homeworkList;
 	
 	private Integer usersubmit=0; //不入数据库
@@ -32,6 +33,13 @@ public class HomeWorkTitleEntity implements Serializable{
 	}
 	public void setId(Integer id) {
 		this.id = id;
+	}
+	@Column(name="endtime",nullable=false,length=500)
+	public Date getEndTime() {
+		return endTime;
+	}
+	public void setEndTime(Date endTime) {
+		this.endTime = endTime;
 	}
 	@Column(name="title",nullable=false,length=500)
 	public String getTitle() {

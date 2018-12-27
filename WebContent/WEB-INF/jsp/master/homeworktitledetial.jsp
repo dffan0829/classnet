@@ -61,6 +61,12 @@
 	                						</td>
 										</tr>
 										<tr class="tdbg" align="center">
+											<td height="25" align="right" style="padding-right:8px">截止时间:</td>
+											<td align="left" style="padding-left:8px">
+	                							<f:formatDate value="${entity.endTime}" pattern="yyyy-MM-dd HH:mm"/>
+	                						</td>
+										</tr>
+										<tr class="tdbg" align="center">
 											<td height="25" align="right" style="padding-right:8px">详细描述:</td>
 											<td align="left" style="padding-left:8px;line-height: 22px">
 	                							<c:out value="${entity.description}" escapeXml="false" />

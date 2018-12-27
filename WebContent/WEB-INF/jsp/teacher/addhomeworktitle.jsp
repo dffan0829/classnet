@@ -67,6 +67,12 @@
 														escapeXml="false" /></textarea>
 												<p>请输入描述信息</p></td>
 										</tr>
+										<tr>
+											<td width="15%" height="28" align="right" bgcolor="#edf1f7">截止时间：</td>
+											<td height="28" bgcolor="#FFFFFF">
+												  <input type="text" name="endTime" value="${homeWorkTitleEntity.endTime}"/>
+												<p>请输入作业截止时间</p></td>
+										</tr>
 									</table>
 									<div class="anniu">
 										<p>
