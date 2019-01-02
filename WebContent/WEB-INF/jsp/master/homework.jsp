@@ -25,7 +25,7 @@
 								您现在的位置：
 								<a href="<c:url value="/"/>"><f:message key="site_name" />
 								</a>&gt;&gt;
-								<a href="<c:url value="/master/"/>">会员中心</a>
+								<a href="<c:url value="/master/"/>">学生中心</a>
 							</div>
 							<div class="c_spacing"></div>
 							<div class="u_form1">
@@ -41,7 +41,7 @@
 										<tr class="Gdvspacingtitle" style="height: 25px;" align="center">
 											<th scope="col" style="width: 7%;">ID</th>
 											<th scope="col">作业题目</th>
-											<th scope="col" style="width: 15%;">发布时间</th>
+											<th scope="col" style="width: 23%;">发布时间</th>
 											<th scope="col" style="width: 10%;">状态</th>
 											<th scope="col" style="width: 13%;">操作</th>
 										</tr>
@@ -51,7 +51,18 @@
 											<tr class="tdbg" align="center">
 												<td height="22"><c:out value="${vs.index+1}" /></td>
 												<td align="left" style="font-weight: bold;">
-	                								<a href="<c:url value="/master/homework.do?m=titleDetail&id=${hwt.id}"/>"><c:out value="${hwt.title}" /></a>
+												  <c:choose>
+														<c:when test="${hwt.usersubmit==1}">
+															<a href="<c:url value="/master/homework.do?m=titleScore&id=${hwt.id}"/>">
+															  <c:out value="${hwt.title}" />
+															</a>
+														</c:when>
+														<c:otherwise>
+															<a href="<c:url value="/master/homework.do?m=titleDetail&id=${hwt.id}"/>">
+		                									  <c:out value="${hwt.title}" />
+		                									</a>
+														</c:otherwise>
+												  </c:choose>
 	                							</td>
 	                							<td align="center">
 	                								<f:formatDate value="${hwt.time}" pattern="yyyy-MM-dd HH:mm"/>
@@ -63,7 +74,14 @@
 													</c:choose>
 												</td>
 	                							<td align="center" style="font-weight: bold;">
-	                								<a href="<c:url value="/master/homework.do?m=titleDetail&id=${hwt.id}"/>">提交作业</a>
+	                							    <c:choose>
+														<c:when test="${hwt.usersubmit==1}">
+															<a href="<c:url value="/master/homework.do?m=titleScore&id=${hwt.id}"/>">查看得分</a>
+														</c:when>
+														<c:otherwise>
+															<a href="<c:url value="/master/homework.do?m=titleDetail&id=${hwt.id}"/>">提交作业</a>
+														</c:otherwise>
+													</c:choose>
 	                							</td>
 											</tr>
 											</c:forEach>

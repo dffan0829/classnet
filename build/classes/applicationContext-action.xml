@@ -230,6 +230,7 @@
 	<bean name="/teacher/homework" class="com.classnet.action.admin.HomeWorkAction">
 		<property name="homeWorkTitleDao" ref="homeWorkTitleDao"></property>
 		<property name="userHomeWorkDao" ref="userHomeWorkDao"></property>
+		<property name="studentDao" ref="studentDao"></property>
 		<property name="path" value="${upload_path}"></property>
 	</bean>
 </beans>

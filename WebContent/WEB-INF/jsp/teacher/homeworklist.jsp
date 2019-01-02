@@ -87,8 +87,9 @@ function setScore(id){
 										bgcolor="#dae2e5">
 										<tr>
 											<td height="30" bgcolor="#ffffff" align="left"
-												style="padding-left: 10px; font-weight: bold;">作业题目：<c:out
-													value="${titleEntity.title}" />
+												style="padding-left: 10px; font-weight: bold;">
+												    作业题目：<c:out value="${titleEntity.title}" />
+												  <span style="color: red;left: 340px;position: relative;">已完成人数:${endCtn}人&nbsp;&nbsp;&nbsp;&nbsp;总人数${totalCtn}人</span>
 											</td>
 										</tr>
 									</table>

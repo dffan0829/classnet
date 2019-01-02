@@ -1,5 +1,8 @@
 package com.classnet.action.master;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.OutputStream;
 import java.util.Date;
 import java.util.List;
 
@@ -58,6 +61,7 @@ public class DoHomeWorkAction extends DispatchAction{
 		List<HomeWorkTitleEntity> homeworktitleList = pp.getPage();
 		if(homeworktitleList!=null&&!homeworktitleList.isEmpty()){
 			for(HomeWorkTitleEntity entity : homeworktitleList){
+				System.out.println(entity.getTitle());
 				boolean bln = userHomeWorkDao.findByUserIdAndTitleId(userEntity.getId(), entity.getId());
 				if(bln){
 					entity.setUsersubmit(1);
@@ -80,6 +84,52 @@ public class DoHomeWorkAction extends DispatchAction{
 		request.setAttribute("entity", entity);
 		return mapping.findForward("homeworktitledetial");
 	}
+	
+	public ActionForward titleScore(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		
+		int id = WebUtil.getInteger(request, "id");
+		HomeWorkTitleEntity entity = homeWorkTitleDao.selectById(HomeWorkTitleEntity.class, id);
+		if(entity==null){
+			response.sendRedirect(request.getContextPath()+"/master/homework.do?m=hw");
+			return null;
+		}
+		request.setAttribute("entity", entity);
+		return mapping.findForward("homeworktitlescore");
+	}
+	
+	public ActionForward download(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		
+		int id = WebUtil.getInteger(request, "id");
+		UserHomeWorkEntity entity = userHomeWorkDao.selectById(UserHomeWorkEntity.class, id);
+		if(entity!=null){
+			HomeWorkTitleEntity titleEntity = entity.getTitle();
+			File file = new File(path+"/homework/"+titleEntity.getId()+"/"+entity.getName());
+			if(!file.exists()){
+				response.setCharacterEncoding("utf-8");
+				response.getWriter().write("该文件不存在");
+				return null;
+			}
+			response.reset();
+			response.setContentType("application/x-download");
+			response.addHeader("Content-Disposition","attachment;filename=" + new String(entity.getName().getBytes(),"ISO8859-1")); 
+			OutputStream out = response.getOutputStream();
+			FileInputStream in = new FileInputStream(file);
+			byte[] b = new byte[1024];
+			int i = 0;
+			while((i=in.read(b))>0){
+				out.write(b,0,i);
+			}
+			out.flush();
+			in.close();
+			out.close();
+		}
+		return null;
+	}
+	
 	public ActionForward submit(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
@@ -90,7 +140,7 @@ public class DoHomeWorkAction extends DispatchAction{
 		//已到了截止时间 不能提交
 		if(new Date().getTime() > titleEntity.getEndTime().getTime()){
 			response.setCharacterEncoding("utf-8");
-			response.getWriter().write("<script>alert('已过了截止时间!');window.location.go(-1);</script>");
+			response.getWriter().write("<script>alert('已过了截止时间!');history.go(-1);</script>");
 			return null;
 		}
 		

@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -27,12 +28,18 @@ import com.classnet.util.WebUtils;
 import com.classnet.util.page.IPagination;
 import com.classnet.util.page.SimplePagination;
 import com.classnet.util.page.WebUtil;
+import com.hyitclassnet.dao.StudentDao;
 
 public class HomeWorkAction extends DispatchAction{
 
 	private String path;
 	private HomeWorkTitleDao homeWorkTitleDao;
 	private UserHomeWorkDao userHomeWorkDao;
+	private StudentDao studentDao;
+	
+	public void setStudentDao(StudentDao studentDao) {
+		this.studentDao = studentDao;
+	}
 	public void setUserHomeWorkDao(UserHomeWorkDao userHomeWorkDao) {
 		this.userHomeWorkDao = userHomeWorkDao;
 	}
@@ -55,7 +62,20 @@ public class HomeWorkAction extends DispatchAction{
 		}
 		IPagination pp = new SimplePagination(dc,Order.desc("id"),true,page,pageSize);
 		pp.save(request);
-		List<HomeWorkTitleEntity> homeworktitleList = pp.getPage();
+		//List<HomeWorkTitleEntity> homeworktitleList = pp.getPage();
+		List<Object[]> temp = homeWorkTitleDao.findByExampleSQL("select * from homework_title");
+		
+		List<HomeWorkTitleEntity> homeworktitleList = new ArrayList<HomeWorkTitleEntity>();
+		for (Object[] objects : temp) {
+			HomeWorkTitleEntity homeWorkTitleEntity = new HomeWorkTitleEntity();
+			homeWorkTitleEntity.setId(Integer.parseInt(String.valueOf(objects[0])));
+			homeWorkTitleEntity.setTime((Date)objects[1]);
+			homeWorkTitleEntity.setDescription(String.valueOf(objects[2]));
+			homeWorkTitleEntity.setTitle(String.valueOf(objects[3]));
+			homeWorkTitleEntity.setEndTime((Date)objects[4]);
+			homeworktitleList.add(homeWorkTitleEntity);
+		}
+		
 		request.setAttribute("homeworktitleList", homeworktitleList);
 		return mapping.findForward("titleList");
 	}
@@ -192,6 +212,13 @@ public class HomeWorkAction extends DispatchAction{
 		request.setAttribute("homeworkList", homeworkList);
 		HomeWorkTitleEntity titleEntity = homeWorkTitleDao.selectById(HomeWorkTitleEntity.class, titleId);
 		request.setAttribute("titleEntity", titleEntity);
+		
+		//已完成人数 总人数
+		int totalCtn = studentDao.findByExampleSQL("select * from student").size();
+		int endCtn = homeWorkTitleDao.findByExampleSQL("select * from userhoumework_table where titleId = '"+titleId+"'").size();
+		request.setAttribute("endCtn", endCtn);
+		request.setAttribute("totalCtn", totalCtn);
+		
 		return mapping.findForward("homeworklist");
 	}
 	public ActionForward download(ActionMapping mapping, ActionForm form,

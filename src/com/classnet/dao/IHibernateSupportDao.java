@@ -32,4 +32,7 @@ public interface IHibernateSupportDao<T> {
 	@SuppressWarnings("unchecked")
 	public abstract List findByExample(String sql);
 
+	@SuppressWarnings("unchecked")
+	public abstract List findByExampleSQL(String sql);
+
 }

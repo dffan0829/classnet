@@ -108,6 +108,15 @@ public class HibernateSupportDao<T> implements IHibernateSupportDao<T>{
 		}
 	}
 	
+	 @SuppressWarnings("unchecked")
+		public  List findByExampleSQL(String sql){
+			try{
+				return sessionFactory.getCurrentSession().createSQLQuery(sql).list();
+			}catch(Exception e){
+				e.printStackTrace();
+				return null;
+			}
+		}
 	
 	/**
 	 * example:String sql="from User u WHERE u.username=:username AND u.password=:password"

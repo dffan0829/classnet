@@ -1,11 +1,15 @@
 package com.classnet.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @SuppressWarnings("serial")
@@ -22,7 +26,8 @@ public class UserEntity implements Serializable{
 	private String phoneNumber;
 	private String realName;
 	private String fkid;
-	
+	private List<UserHomeWorkEntity> homeworkList;
+
 	@Id
 	@GeneratedValue
 	public Integer getId() {
@@ -87,4 +92,12 @@ public class UserEntity implements Serializable{
 	public void setFkid(String fkid) {
 		this.fkid = fkid;
 	}
+	@OneToMany(mappedBy="userEntity",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+	public List<UserHomeWorkEntity> getHomeworkList() {
+		return homeworkList;
+	}
+	public void setHomeworkList(List<UserHomeWorkEntity> homeworkList) {
+		this.homeworkList = homeworkList;
+	}
+
 }

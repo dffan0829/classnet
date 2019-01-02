@@ -92,15 +92,15 @@ function del(id){
 									<table width="99%" border="0" cellpadding="0" cellspacing="1"
 										bgcolor="#dae2e5">
 										<tr>
-											<td width="10%" height="30" bgcolor="#e5edfa"><div
+											<td width="5%" height="30" bgcolor="#e5edfa"><div
 													align="center" class="STYLE3">ID</div></td>
 											<td width="30%" height="30" bgcolor="#e5edfa"><div
 													align="center" class="STYLE3">题目名称</div></td>
-											<td width="20%" height="30" bgcolor="#e5edfa"><div
+											<td width="15%" height="30" bgcolor="#e5edfa"><div
 													align="center" class="STYLE3">发布日期</div></td>
-										    <td width="20%" height="30" bgcolor="#e5edfa"><div
+										    <td width="15%" height="30" bgcolor="#e5edfa"><div
 													align="center" class="STYLE3">截止日期</div></td>
-											<td width="20%" height="30" bgcolor="#e5edfa"><div
+											<td width="25%" height="30" bgcolor="#e5edfa"><div
 													align="center" class="STYLE3">操作选项</div></td>
 										</tr>
 										<c:choose>
@@ -115,9 +115,9 @@ function del(id){
 															href="<c:url value="/teacher/homework.do?m=list&titleId=${hw.id}"/>"><c:out
 																	value="${hw.title}" /></a></td>
 														<td bgcolor="#FFFFFF" align="center"><f:formatDate
-																value="${hw.time}" pattern="yyyy-MM-dd HH:mm" /></td>
+																value="${hw.time}" pattern="yyyy-MM-dd" /></td>
 														<td bgcolor="#FFFFFF" align="center"><f:formatDate
-																value="${hw.endTime}" pattern="yyyy-MM-dd HH:mm" /></td>
+																value="${hw.endTime}" pattern="yyyy-MM-dd" /></td>
 														<td bgcolor="#FFFFFF" align="center"><a
 															href="<c:url value="/teacher/homework.do?m=editTitle&id=${hw.id}"/>">修改</a>&nbsp;&nbsp;
 															<a href="javascript:del(${hw.id})">删除</a>&nbsp;&nbsp; <a
@@ -130,7 +130,7 @@ function del(id){
 											</c:when>
 											<c:otherwise>
 												<tr>
-													<td colspan="4" align="center" height="30"
+													<td colspan="5" align="center" height="30"
 														bgcolor="#ffffff">暂无记录</td>
 												</tr>
 											</c:otherwise>

@@ -3,6 +3,7 @@ package com.classnet.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -46,7 +47,7 @@ public class UserHomeWorkEntity implements Serializable{
 	public void setAddtime(Date addtime) {
 		this.addtime = addtime;
 	}
-	@ManyToOne(fetch=FetchType.EAGER,optional=false)
+	@ManyToOne(cascade = CascadeType.ALL,fetch=FetchType.LAZY,optional=false)
 	@JoinColumn(name="titleId")
 	public HomeWorkTitleEntity getTitle() {
 		return title;
@@ -54,7 +55,7 @@ public class UserHomeWorkEntity implements Serializable{
 	public void setTitle(HomeWorkTitleEntity title) {
 		this.title = title;
 	}
-	@ManyToOne(fetch=FetchType.EAGER,optional=false)
+	@ManyToOne(cascade = CascadeType.ALL,fetch=FetchType.EAGER,optional=false)
 	@JoinColumn(name="userId")
 	public UserEntity getUserEntity() {
 		return userEntity;

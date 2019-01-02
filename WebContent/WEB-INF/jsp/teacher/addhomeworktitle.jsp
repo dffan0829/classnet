@@ -12,6 +12,23 @@
 <script type="text/javascript" src="../js/jquery.js"></script>
 <script type="text/javascript">
  function check(form){
+	 	var title = $(":input[name='title']").val();
+		var description = $(":input[name='description']").val();
+		var endTime = $(":input[name='endTime']").val();
+		var orignpwd = $(":input[type='hidden']").val();
+		if($.trim(title) == ""){
+			alert("作业标题不能为空!");
+			return false;
+		}
+		if($.trim(description) == ""){
+			alert("作业描述不能为空!");
+			return false;
+		}
+		if ($.trim(endTime) == "") {
+			alert("截止时间不能为空!");
+			return false;
+		}
+
 	var rowguid =  $(":input[type='hidden']").val();
 	if(rowguid!= ""){
 		$(form).attr("action","<c:url value='/teacher/homework.do?m=doEditTitle'/>");
@@ -61,20 +78,22 @@
 										</tr>
 										<tr>
 											<td width="15%" height="28" align="right" bgcolor="#edf1f7">描述：</td>
-											<td height="28" bgcolor="#FFFFFF"><textarea
-													name="description"><c:out
-														value="${homeWorkTitleEntity.description}"
-														escapeXml="false" /></textarea>
-												<p>请输入描述信息</p></td>
+											<td height="28" bgcolor="#FFFFFF">
+											  <textarea name="description" style="width: 432px;height: 70px;">
+											  	<c:out value="${homeWorkTitleEntity.description}" escapeXml="false" />
+											  </textarea>
+											  <p>请输入描述信息</p>
+											</td>
 										</tr>
 										<tr>
 											<td width="15%" height="28" align="right" bgcolor="#edf1f7">截止时间：</td>
 											<td height="28" bgcolor="#FFFFFF">
-												  <input type="text" name="endTime" value="${homeWorkTitleEntity.endTime}"/>
-												<p>请输入作业截止时间</p></td>
+												  <input type="text" name="endTime" style="width: 432px;" value="${homeWorkTitleEntity.endTime}"/>
+												<p>请输入作业截止时间</p>
+											</td>
 										</tr>
 									</table>
-									<div class="anniu">
+									<div class="anniu" style="margin-top:20px;">
 										<p>
 											<input type="submit" value="提交" class="fabu" /> <input
 												type="button" value="返回" class="fabu"

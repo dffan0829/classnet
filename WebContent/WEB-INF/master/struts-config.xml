@@ -21,6 +21,7 @@
   			type="org.springframework.web.struts.DelegatingActionProxy">
   		<forward name="hw" path="/../WEB-INF/jsp/master/homework.jsp"></forward>
   		<forward name="homeworktitledetial" path="/../WEB-INF/jsp/master/homeworktitledetial.jsp"></forward>
+  		<forward name="homeworktitlescore" path="/../WEB-INF/jsp/master/homeworktitleinfoscore.jsp"></forward>
   	</action>
   	<action path="/topic"
   			scope="request"
